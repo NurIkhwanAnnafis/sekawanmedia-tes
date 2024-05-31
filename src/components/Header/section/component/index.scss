@@ -1,0 +1,14 @@
+
+.card__notification_popup {
+  width: 100%;
+
+  svg, p {
+    color: #333333;
+  }
+
+  &.read {
+    svg, p {
+      color: #5F605F !important;
+    }
+  }
+}

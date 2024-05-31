@@ -1,0 +1,13 @@
+.container-Wrapper {
+  height: inherit;
+
+  .box-Wrapper {
+    min-height: calc(100vh - 200px);
+    padding: 6px 0px 6px 6px;
+
+    .box-Wrapper-content {
+      overflow-x: hidden;
+      padding-right: 24px;
+    }
+  }
+}

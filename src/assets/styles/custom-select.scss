@@ -1,0 +1,13 @@
+.ant-select-custom {
+  height: 40px;
+
+  .ant-select-selector {
+    border-radius: 16px !important;
+    height: 40px !important;
+  }
+
+  .ant-select-selection-item {
+    align-items: center;
+    display: flex;
+  }
+}

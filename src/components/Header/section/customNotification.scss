@@ -1,0 +1,15 @@
+.ant-notification {
+  svg {
+    color: #000000;
+  }
+
+  .notification__outlet {
+    svg {
+      color: #028EE5 !important;
+    }
+
+    .ant-notification-notice-message {
+      color: #028EE5 !important;
+    }
+  }
+}
