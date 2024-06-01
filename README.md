@@ -1,7 +1,7 @@
 ### `System Requirement`
 
-Node version: v14.19.0\
-Npm version: 1.14.16
+node version: v14.19.0\
+npm version: 6.14.16
 
 ### `How to start`
 1. npm i or npm install
