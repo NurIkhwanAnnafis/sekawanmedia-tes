@@ -4,6 +4,7 @@ import Wrapper from "../../../components/Wrapper";
 import { useTicketDetail } from "../context/useTicketDetail";
 import moment from "moment";
 import ColumnStatus from "./ColumnStatus";
+import { Trans, useTranslation } from "react-i18next";
 
 const { Title, Text } = Typography;
 
@@ -19,6 +20,7 @@ const ValueSection = ({ label, value }: { label: string, value: string | Element
 )
 
 const Detail = () => {
+    const { t } = useTranslation(['ticket', 'base']);
     const {
         detail,
         handleBack,
@@ -32,45 +34,46 @@ const Detail = () => {
             <Card className="styleCardTicket">
                 <Row gutter={24}>
                     <Col span={24}>
-                        <Title level={5}>Detail Ticket</Title>
+                        <Title level={5}>{t('detail.header', 'Detail Ticket')}</Title>
                     </Col>
                 </Row>
 
-                <ValueSection label="Profile" value={<Image width={80} src={detail.thumbnail} />} />
-                <ValueSection label="Title" value={detail.title || '-'} />
-                <ValueSection label="Code" value={detail.sku || '-'} />
-                <ValueSection label="Policy" value={detail.returnPolicy || '-'} />
-                <ValueSection label="Customer Name" value={detail.brand || '-'} />
-                <ValueSection label="Date" value={moment().format('DD MMMM YYYY h:mm a')} />
-                <ValueSection label="Description" value={detail.description || '-'} />
-                <ValueSection label="Priority" value={<ColumnStatus rating={detail.rating} />} />
+                <ValueSection label={t('detail.profile', 'Profile')} value={<Image width={80} src={detail.thumbnail} />} />
+                <ValueSection label={t('detail.title', 'Title')} value={detail.title || '-'} />
+                <ValueSection label={t('detail.code', "Code")} value={detail.sku || '-'} />
+                <ValueSection label={t('detail.policy', "Policy")} value={detail.returnPolicy || '-'} />
+                <ValueSection label={t('detail.customer', 'Customer Name')} value={detail.brand || '-'} />
+                <ValueSection label={t('detail.date', "Date")} value={moment().format('DD MMMM YYYY h:mm a')} />
+                <ValueSection label={t('detail.description', "Description")} value={detail.description || '-'} />
+                <ValueSection label={t('detail.priority', "Priority")} value={<ColumnStatus rating={detail.rating} />} />
 
                 <Row gutter={24} className="mt-5">
                     <Col sm={12} xs={0}></Col>
                     <Col sm={12} xs={24} className="text-end">
                         <Button htmlType="button" type="default" onClick={handleBack}>
-                            Cancel
+                            {t('label.cancel', 'Cabcel', { ns: 'base' })}
                         </Button>
                         <Button htmlType="button" type="primary" danger className="mx-2" onClick={() => setModal({ open: true, type: 'reject' })}>
-                            Rejected
+                            {t('action.1', 'Reject', { returnObjects: true })}
                         </Button>
                         <Button htmlType="button" type="primary" onClick={() => setModal({ open: true, type: 'approve' })}>
-                            Approve
+                            {t('action.0', 'Approve', { returnObjects: true })}
                         </Button>
                     </Col>
                 </Row>
             </Card>
 
             <Modal
-                title={`${modal.type === 'approve' ? 'Approve' : 'Reject'} Ticket`}
+                title={modal.type === 'approve' ? t('modal.action.titleApprove', 'Approve Ticket') : t('modal.action.titleReject', 'Reject Ticket')}
                 visible={modal.open}
                 maskClosable
                 onCancel={() => setModal({ type: '', open: false })}
                 onOk={handleUpdateStatus}
             >
                 <Text>
-                    {`Are you sure to ${modal.type === 'approve' ? 'Approve' : 'Reject'} this `}
-                    <Text strong>{`Ticket(${detail.title})`}</Text>
+                    <Trans t={t} i18nKey={modal.type === 'approve' ? 'modal.action.descriptionApprove' : 'modal.action.descriptionReject'}>
+                        {{ name: detail.title }}
+                    </Trans>
                 </Text>
             </Modal>
         </Wrapper>
