@@ -1,6 +1,6 @@
 ### `System Requirement`
 
-Node version: v14.19.0
+Node version: v14.19.0\
 Npm version: 1.14.16
 
 ### `How to start`
