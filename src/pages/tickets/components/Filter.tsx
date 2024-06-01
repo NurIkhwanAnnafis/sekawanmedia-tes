@@ -16,10 +16,10 @@ const Filter: React.FC = () => {
 
     return (
         <Row gutter={24} justify="space-between" align="middle">
-            <Col span={17}>
+            <Col lg={15} md={14} sm={12} xs={24}>
                 <Title level={5}>{t('title', 'All tickets')}</Title>
             </Col>
-            <Col span={7} className="pe-0">
+            <Col lg={9} md={10} sm={12} xs={24} className="pe-0">
                 <Row gutter={8} align="middle" justify="end">
                     <Col span={8}>
                         <Button

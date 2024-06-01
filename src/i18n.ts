@@ -7,7 +7,7 @@ const languageDetector = new LanguageDetector();
 languageDetector.addDetector({
     name: 'customDetector',
     lookup: () => {
-        const lng = localStorage.getItem('i18nextLng') || '';
+        const lng = localStorage.getItem('i18nextLng') || 'en';
         if (lng.substring(0, 2) === 'en') {
             return 'en';
         }

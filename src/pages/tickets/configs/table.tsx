@@ -21,7 +21,6 @@ export const columns = ({ handleSetModalSelected, handleShowDetail, t, isAdmin }
         dataIndex: 'title',
         key: 'title',
         width: 300,
-        fixed: 'left',
         className: "ps-4",
         render: (text, record) => (
             <Row gutter={24} align="middle">

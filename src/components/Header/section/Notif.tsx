@@ -49,7 +49,7 @@ const Notif: React.FC = () => {
         options={options}
         showSearch
         showArrow={false}
-        style={{ marginTop: 4, width: 180, marginRight: 8 }}
+        style={{ marginTop: 4, width: 120, marginRight: 8 }}
         defaultActiveFirstOption={false}
         filterOption={false}
         onSearch={debounce((value) => handleSearch(value), 500)}
