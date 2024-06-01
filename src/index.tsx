@@ -9,20 +9,14 @@ import reportWebVitals from './reportWebVitals';
 import Routes from './Routes';
 import { store } from './redux/store';
 import 'moment/locale/id';
-import moment from 'moment';
-import id_ID from 'antd/lib/locale/id_ID';
-import { ConfigProvider } from 'antd';
 import './i18n';
 
-moment().locale('id');
 ReactDOM.render(
   <React.Fragment>
     <Provider store={store}>
-      <ConfigProvider componentSize="middle" locale={id_ID}>
         <BrowserRouter>
           <Routes />
         </BrowserRouter>
-      </ConfigProvider>
     </Provider>
   </React.Fragment>,
   document.getElementById('root'),

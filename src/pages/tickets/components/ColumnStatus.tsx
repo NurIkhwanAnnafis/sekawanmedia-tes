@@ -1,17 +1,19 @@
 import { Tag } from "antd";
+import { useTranslation } from "react-i18next";
 
 interface Props {
     rating: number;
 }
 
 const ColumnStatus: React.FC <Props> = ({ rating }) => {
-    let result: { label: string, color: string } = {
-        label: 'LOW',
+    const { t } = useTranslation(['ticket']);
+    let result: { label: string | object, color: string } = {
+        label: t('status.1', 'LOW', { returnObjects: true }),
         color: '#FEC400'
     }
 
     if (Math.floor(rating) > 3) {
-        result = { label: 'HIGH', color: '#F12B2C' };
+        result = { label: t('status.0', 'HIGH', { returnObjects: true }), color: '#F12B2C' };
     } else if (Math.floor(rating) < 3) {
         result = { label: 'NORMAL', color: '#29CC97' };
     }

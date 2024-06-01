@@ -2,8 +2,10 @@ import { Col, Pagination, Row, Table } from "antd";
 import { Fragment, useContext } from "react";
 import { columns } from "../configs/table";
 import { ContextTickets } from "../context/ContextProvider";
+import { useTranslation } from "react-i18next";
 
 const List: React.FC = () => {
+    const { t } = useTranslation(['ticket']);
     const {
         dataTickets,
         handleChangePage,
@@ -17,7 +19,7 @@ const List: React.FC = () => {
             <Row gutter={24} style={{ margin: '0px -24px' }}>
                 <Col span={24} className="px-0">
                     <Table
-                        columns={columns({ handleSetModalSelected, handleShowDetail })}
+                        columns={columns({ handleSetModalSelected, handleShowDetail, t })}
                         dataSource={dataTickets.products}
                         pagination={false} scroll={{ x: 1000 }}
                         loading={loading}

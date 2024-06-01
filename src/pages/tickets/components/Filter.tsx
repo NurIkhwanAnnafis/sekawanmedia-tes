@@ -2,10 +2,12 @@ import { Button, Col, Row, Typography } from "antd";
 import { useContext } from "react";
 import { ContextTickets } from "../context/ContextProvider";
 import { FilterOutlined, SortAscendingOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 const { Title, Text } = Typography;
 
 const Filter: React.FC = () => {
+    const { t } = useTranslation(['ticket']);
     const {
         handleOpenModalCreate,
         handleOpenModalSort,
@@ -15,7 +17,7 @@ const Filter: React.FC = () => {
     return (
         <Row gutter={24} justify="space-between" align="middle">
             <Col span={17}>
-                <Title level={5}>All tickets</Title>
+                <Title level={5}>{t('title', 'All tickets')}</Title>
             </Col>
             <Col span={7} className="pe-0">
                 <Row gutter={8} align="middle" justify="end">
@@ -27,7 +29,7 @@ const Filter: React.FC = () => {
                             className="d-flex align-items-center"
                             onClick={handleOpenModalSort}
                         >
-                            <Text type="secondary">Sort</Text>
+                            <Text type="secondary">{t('sort', 'Sort')}</Text>
                         </Button>
                     </Col>
                     <Col span={8}>
@@ -38,7 +40,7 @@ const Filter: React.FC = () => {
                             className="d-flex align-items-center"
                             onClick={handleOpenModalFilter}
                         >
-                            <Text type="secondary">Filter</Text>
+                            <Text type="secondary">{t('filter', 'Filter')}</Text>
                         </Button>
                     </Col>
                     <Col span={8}>
@@ -47,7 +49,7 @@ const Filter: React.FC = () => {
                             type="primary"
                             onClick={handleOpenModalCreate}
                         >
-                            Create
+                            {t('create', 'Create')}
                         </Button>
                     </Col>
                 </Row>

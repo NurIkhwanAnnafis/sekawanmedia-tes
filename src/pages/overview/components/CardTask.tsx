@@ -33,28 +33,28 @@ const CardTask: React.FC = () => {
                     <br />
                     <Row gutter={24} justify="space-between">
                         <Col span={18}>
-                            <Text>{t('unresolved_tickets.list', 'Waiting on Feature Request')[0]}</Text>
+                            <Text>{t('unresolved_tickets.list.0', 'Waiting on Feature Request', { returnObjects: true })}</Text>
                         </Col>
                         <Col span={6} className="text-end">
                             <Text type="secondary">{dataUnresolved.waiting_for_request}</Text>
                         </Col>
                         <Divider className="my-3" />
                         <Col span={18}>
-                            <Text>{t('unresolved_tickets.list', 'Awaiting Customer Response')[1]}</Text>
+                            <Text>{t('unresolved_tickets.list.1', 'Awaiting Customer Response', { returnObjects: true })}</Text>
                         </Col>
                         <Col span={6} className="text-end">
                             <Text type="secondary">{dataUnresolved.waiting_for_response}</Text>
                         </Col>
                         <Divider className="my-3" />
                         <Col span={18}>
-                            <Text>{t('unresolved_tickets.list', 'Awaiting Developer Fix')[2]}</Text>
+                            <Text>{t('unresolved_tickets.list.2', 'Awaiting Developer Fix', { returnObjects: true })}</Text>
                         </Col>
                         <Col span={6} className="text-end">
                             <Text type="secondary">{dataUnresolved.waiting_for_developer}</Text>
                         </Col>
                         <Divider className="my-3" />
                         <Col span={18}>
-                            <Text>{t('unresolved_tickets.list', 'Pending')[3]}</Text>
+                            <Text>{t('unresolved_tickets.list.3', 'Pending', { returnObjects: true })}</Text>
                         </Col>
                         <Col span={6} className="text-end">
                             <Text type="secondary">{dataUnresolved.pending}</Text>

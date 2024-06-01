@@ -1,10 +1,12 @@
 import { Button, Form, Modal, Select } from "antd";
 import { useContext } from "react";
 import { ContextTickets } from "../context/ContextProvider";
+import { useTranslation } from "react-i18next";
 
 const { Option } = Select;
 
 const ModalSort: React.FC = () => {
+    const { t } = useTranslation(['ticket', 'base']);
     const [form] = Form.useForm();
     const {
         modalSort,
@@ -19,7 +21,10 @@ const ModalSort: React.FC = () => {
             visible={modalSort}
             footer={null}
             maskClosable
-            onCancel={handleCloseModalSort}
+            onCancel={() => {
+                handleCloseModalSort();
+                form.resetFields();
+            }}
         >
             <Form
                 form={form}
@@ -32,23 +37,23 @@ const ModalSort: React.FC = () => {
 
             >
                 <Form.Item
-                    label="Sort by"
+                    label={t('modal.sort.sortBy', 'Sort by')}
                     name="sortBy"
-                    rules={[{ required: true, message: 'Please select sort by!' }]}
+                    rules={[{ required: true, message: t('modal.sort.errorSortBy', 'Please select sort by!') }]}
                 >
                     <Select
                         onChange={(value) => form.setFieldsValue({ sortBy: value })}
                         allowClear
                     >
-                        <Option value="name">Ticket Details</Option>
-                        <Option value="brand">Customer Name</Option>
-                        <Option value="rating">Priority</Option>
+                        <Option value="name">{t('column.0', 'Ticket details', { returnObjects: true })}</Option>
+                        <Option value="brand">{t('column.1', 'Customer name', { returnObjects: true })}</Option>
+                        <Option value="rating">{t('column.3', 'Priority', { returnObjects: true })}</Option>
                     </Select>
                 </Form.Item>
                 <Form.Item
-                    label="Order"
+                    label={t('modal.sort.order', 'Order')}
                     name="order"
-                    rules={[{ required: true, message: 'Please select order!' }]}
+                    rules={[{ required: true, message: t('modal.sort.errorOrder', 'Please select order!') }]}
                 >
                     <Select
                         onChange={(value) => form.setFieldsValue({ order: value })}
@@ -60,7 +65,7 @@ const ModalSort: React.FC = () => {
                 </Form.Item>
                 <Form.Item className="text-end mb-0 mt-3">
                     <Button type="primary" htmlType="submit">
-                        Submit
+                        {t('label.submit', 'Submit', { ns: 'base' })}
                     </Button>
                 </Form.Item>
             </Form>

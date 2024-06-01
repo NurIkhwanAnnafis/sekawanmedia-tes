@@ -1,5 +1,6 @@
 import { MoreOutlined } from "@ant-design/icons";
 import { Button, Dropdown, Menu } from "antd";
+import { useTranslation } from "react-i18next";
 
 interface Props {
     onClick: (type: 'approve' | 'reject', open: boolean) => void;
@@ -7,6 +8,7 @@ interface Props {
 }
 
 const ColumnAction: React.FC<Props> = ({ onClick, onClickDetail }) => {
+    const { t } = useTranslation(['ticket']);
 
     const menu = (
         <Menu style={{ width: 100 }}>
@@ -17,12 +19,12 @@ const ColumnAction: React.FC<Props> = ({ onClick, onClickDetail }) => {
             </Menu.Item>
             <Menu.Item key="1">
                 <div onClick={() => onClick('approve', true)}>
-                    <p>Approve</p>
+                    <p>{t('action.0', 'Approve', { returnObjects: true })}</p>
                 </div>
             </Menu.Item>
             <Menu.Item key="2">
                 <div onClick={() => onClick('reject', true)}>
-                    <p>Reject</p>
+                    <p>{t('action.1', 'Reject', { returnObjects: true })}</p>
                 </div>
             </Menu.Item>
         </Menu>

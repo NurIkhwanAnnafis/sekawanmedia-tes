@@ -1,0 +1,63 @@
+{
+    "title": "All tickets",
+    "filter": "Filter",
+    "sort": "Sort",
+    "create": "Create",
+    "column": [
+        "Tickets details",
+        "Customer name",
+        "Date",
+        "Priority",
+        "on"
+    ],
+    "modal": {
+        "create": {
+            "title": "Create Ticket",
+            "label": [
+                "Ticket Name",
+                "Customer Name",
+                "Priority"
+            ],
+            "error": [
+                "Please input ticket name!",
+                "Please input customer name!",
+                "Please select priority!"
+            ]
+        },
+        "sort": {
+            "sortBy": "Sort By",
+            "order": "Order",
+            "errorSortBy": "Please select sort by!",
+            "errorOrder": "Please select order!"
+        },
+        "filter": {
+            "search": "Search",
+            "error": "Please input search!"
+        },
+        "action": {
+            "titleApprove": "Approve Ticket",
+            "titleReject": "Reject Ticket",
+            "descriptionApprove": "Are you sure to Approve this Ticket(<strong>{{name}}</strong>)",
+            "descriptionReject": "Are you sure to Reject this Ticket(<strong>{{name}}</strong>)"
+        }
+    },
+    "action": [
+        "Approve",
+        "Reject"
+    ],
+    "status":[
+        "HIGH",
+        "LOW"
+    ],
+    "detail": {
+        "header": "Detail Ticket",
+        "profile": "Profile",
+        "title": "Title",
+        "code": "Code",
+        "policy": "Policy",
+        "customer": "Customer Name",
+        "date": "Date",
+        "description": "Description",
+        "priority": "Priority"
+    }
+}

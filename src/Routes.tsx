@@ -8,6 +8,9 @@ import { getRole, getUser } from './utils/localStorage';
 import { handleRedirect } from './utils/pages';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
+import { ConfigProvider } from 'antd';
+import id_ID from 'antd/lib/locale/id_ID';
+import en_US from 'antd/lib/locale/en_US';
 
 interface ILayoutProps {
   path: string;
@@ -60,24 +63,26 @@ const Routes: React.FC<Props> = () => {
   const userRoles = checkMenuRoles(currentRole);
 
   return (
-    <Switch>
-      {menus.map(
-        (detail: ILayoutProps) =>
-          detail.role.includes(userRoles) && (
-            <Route
-              key={detail.path}
-              path={detail.path}
-              element={
-                <detail.layout {...global} title={detail.title} id={detail.id}>
-                  <Suspense fallback={<Loading />}>
-                    <detail.component />
-                  </Suspense>
-                </detail.layout>
-              }
-            />
-          ),
-      )}
-    </Switch>
+    <ConfigProvider componentSize="middle" locale={i18n.language === 'en' ? en_US : id_ID}>
+      <Switch>
+        {menus.map(
+          (detail: ILayoutProps) =>
+            detail.role.includes(userRoles) && (
+              <Route
+                key={detail.path}
+                path={detail.path}
+                element={
+                  <detail.layout {...global} title={detail.title} id={detail.id}>
+                    <Suspense fallback={<Loading />}>
+                      <detail.component />
+                    </Suspense>
+                  </detail.layout>
+                }
+              />
+            ),
+        )}
+      </Switch>
+    </ConfigProvider>
   );
 };
 

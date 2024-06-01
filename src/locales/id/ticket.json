@@ -1,0 +1,63 @@
+{
+    "title": "Semua ticket",
+    "filter": "Saring",
+    "sort": "Sortir",
+    "create": "Tambah",
+    "column": [
+        "Tiket detail",
+        "Nama pelanggan",
+        "Tanggal",
+        "Prioritas",
+        "pada"
+    ],
+    "modal": {
+        "create": {
+            "title": "Tambah Tiket",
+            "label": [
+                "Nama Tiket",
+                "Nama pelanggan",
+                "Prioritas"
+            ],
+            "error": [
+                "Tolong masukan nama tiket!",
+                "Tolong masukan nama pelanggan!",
+                "Tolong pilih prioritas!"
+            ]
+        },
+        "sort": {
+            "sortBy": "Sortir dengan",
+            "order": "Urutan",
+            "errorSortBy": "Tolong pilih Sortir dengan!",
+            "errorOrder": "Tolong pilih urutan!"
+        },
+        "filter": {
+            "search": "Cari",
+            "error": "Tolong masukan keyword!"
+        },
+        "action": {
+            "titleApprove": "Setujui Tiket",
+            "titleReject": "Tolak Tiket",
+            "descriptionApprove": "Apakah Anda yakin untuk Menyetujui Tiket ini(<strong>{{name}}</strong>)",
+            "descriptionReject": "Apakah Anda yakin untuk Tolak Tiket ini(<strong>{{name}}</strong>)"
+        }
+    },
+    "action": [
+        "Setujui",
+        "Tolak"
+    ],
+    "status":[
+        "TINGGI",
+        "RENDAH"
+    ],
+    "detail": {
+        "header": "Tiket Detail",
+        "profile": "Profil",
+        "title": "Judul",
+        "code": "Kode",
+        "policy": "Kebijakan",
+        "customer": "Nama Pelanggan",
+        "date": "Tanggal",
+        "description": "Deskripsi",
+        "priority": "Prioritas"
+    }
+}

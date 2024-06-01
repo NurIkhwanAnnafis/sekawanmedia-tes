@@ -11,11 +11,12 @@ const { Text } = Typography;
 interface IColumns {
     handleSetModalSelected: (type: 'approve' | 'reject', values: IProducts | null, open: boolean) => void
     handleShowDetail: (id: string | number) => void
+    t: any
 }
 
-export const columns = ({ handleSetModalSelected, handleShowDetail }: IColumns): ColumnsType<IProducts> => [
+export const columns = ({ handleSetModalSelected, handleShowDetail, t }: IColumns): ColumnsType<IProducts> => [
     {
-        title: 'Ticket details',
+        title: t('column.0', 'Ticket details', { returnObjects: true }),
         dataIndex: 'title',
         key: 'title',
         width: 300,
@@ -40,18 +41,18 @@ export const columns = ({ handleSetModalSelected, handleShowDetail }: IColumns):
         ),
     },
     {
-        title: 'Customer name',
+        title: t('column.1', 'Customer name', { returnObjects: true }),
         dataIndex: 'brand',
         key: 'brand',
         render: text => (
             <div className="d-flex flex-column">
                 <Text strong>{text || '-'}</Text>
-                <Text type="secondary" style={{ fontSize: 12 }}>on {moment().format('DD MM YYYY')}</Text>
+                <Text type="secondary" style={{ fontSize: 12 }}>{t('column.4', 'on', { returnObjects: true })} {moment().format('DD MM YYYY')}</Text>
             </div>
         ),
     },
     {
-        title: 'Date',
+        title: t('column.2', 'Date', { returnObjects: true }),
         dataIndex: 'date',
         key: 'date',
         render: () => (
@@ -62,7 +63,7 @@ export const columns = ({ handleSetModalSelected, handleShowDetail }: IColumns):
         ),
     },
     {
-        title: 'Priority',
+        title: t('column.3', 'Priority', { returnObjects: true }),
         key: 'rating',
         dataIndex: 'rating',
         render: text => <ColumnStatus rating={text} />

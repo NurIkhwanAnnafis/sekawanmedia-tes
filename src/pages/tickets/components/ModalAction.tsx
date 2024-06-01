@@ -1,10 +1,12 @@
 import { Modal, Typography } from "antd";
 import { useContext } from "react";
 import { ContextTickets } from "../context/ContextProvider";
+import { useTranslation, Trans } from "react-i18next";
 
 const { Text } = Typography;
 
 const ModalAction: React.FC = () => {
+    const { t } = useTranslation(['ticket']);
     const {
         modalSelected,
         handleSetModalSelected,
@@ -13,15 +15,16 @@ const ModalAction: React.FC = () => {
 
     return (
         <Modal
-            title={`${modalSelected.type === 'approve' ? 'Approve' : 'Reject'} Ticket`}
+            title={modalSelected.type === 'approve' ? t('modal.action.titleApprove', 'Approve Ticket') : t('modal.action.titleReject', 'Reject Ticket')}
             visible={modalSelected.open}
             maskClosable
             onCancel={() => handleSetModalSelected('', null, false)}
             onOk={handleUpdateStatus}
         >
             <Text>
-                {`Are you sure to ${modalSelected.type === 'approve' ? 'Approve' : 'Reject'} this `}
-                <Text strong>{`Ticket(${modalSelected.values?.title})`}</Text>
+                <Trans t={t} i18nKey={modalSelected.type === 'approve' ? 'modal.action.descriptionApprove' : 'modal.action.descriptionReject'}>
+                    {{ name: modalSelected.values?.title }}
+                </Trans>
             </Text>
         </Modal>
     )

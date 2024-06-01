@@ -1,10 +1,12 @@
 import { Button, Form, Input, Modal, Select } from "antd";
 import { useContext } from "react";
 import { ContextTickets } from "../context/ContextProvider";
+import { useTranslation } from "react-i18next";
 
 const { Option } = Select;
 
 const ModalCreate: React.FC = () => {
+    const { t } = useTranslation(['ticket', 'base']);
     const [form] = Form.useForm();
     const {
         modalCreate,
@@ -14,11 +16,14 @@ const ModalCreate: React.FC = () => {
 
     return (
         <Modal
-            title="Create Ticket"
+            title={t('modal.create.title', 'Create Ticket')}
             visible={modalCreate}
             footer={null}
             maskClosable
-            onCancel={handleCloseModalCreate}
+            onCancel={() => {
+                handleCloseModalCreate();
+                form.resetFields();
+            }}
         >
             <Form
                 form={form}
@@ -29,36 +34,36 @@ const ModalCreate: React.FC = () => {
                 layout="vertical"
             >
                 <Form.Item
-                    label="Ticket Name"
+                    label={t('modal.create.label.0', 'Ticket Name', { returnObjects: true })}
                     name="title"
-                    rules={[{ required: true, message: 'Please input ticket name!' }]}
+                    rules={[{ required: true, message: String(t('modal.create.error.0', 'Please input ticket name!', { returnObjects: true })) }]}
                 >
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="Customer Name"
+                    label={t('modal.create.label.1', 'Customer Name', { returnObjects: true })}
                     name="customer"
-                    rules={[{ required: true, message: 'Please input customer name!' }]}
+                    rules={[{ required: true, message: String(t('modal.create.error.1', 'Please input customer name!', { returnObjects: true })) }]}
                 >
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="Priority"
+                    label={t('modal.create.label.2', 'Priority', { returnObjects: true })}
                     name="rating"
-                    rules={[{ required: true, message: 'Please select priority!' }]}
+                    rules={[{ required: true, message: String(t('modal.create.error.2', 'Please select priority!', { returnObjects: true })) }]}
                 >
                     <Select
                         onChange={(value) => form.setFieldsValue({ rating: value })}
                         allowClear
                     >
-                        <Option value={1}>LOW</Option>
+                        <Option value={1}>{t('status.1', 'LOW', { returnObjects: true })}</Option>
                         <Option value={3}>NORMAL</Option>
-                        <Option value={5}>HIGH</Option>
+                        <Option value={5}>{t('status.0', 'HIGH', { returnObjects: true })}</Option>
                     </Select>
                 </Form.Item>
                 <Form.Item className="text-end mb-0 mt-3">
                     <Button type="primary" htmlType="submit">
-                        Submit
+                        {t('label.submit', 'Submit', { ns: 'base' })}
                     </Button>
                 </Form.Item>
             </Form>

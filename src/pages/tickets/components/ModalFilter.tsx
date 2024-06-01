@@ -1,8 +1,10 @@
 import { Button, Form, Input, Modal } from "antd";
 import { useContext } from "react";
 import { ContextTickets } from "../context/ContextProvider";
+import { useTranslation } from "react-i18next";
 
 const ModalFilter: React.FC = () => {
+    const { t } = useTranslation(['ticket', 'base']);
     const [form] = Form.useForm();
     const {
         params,
@@ -13,11 +15,14 @@ const ModalFilter: React.FC = () => {
 
     return (
         <Modal
-            title="Filter"
+            title={t('filter', 'Filter')}
             visible={modalFilter}
             footer={null}
             maskClosable
-            onCancel={handleCloseModalFilter}
+            onCancel={() => {
+                handleCloseModalFilter();
+                form.resetFields();
+            }}
         >
             <Form
                 form={form}
@@ -29,15 +34,15 @@ const ModalFilter: React.FC = () => {
                 initialValues={{ q: params.q }}
             >
                 <Form.Item
-                    label="Search"
+                    label={t('modal.filter.search', 'Search')}
                     name="q"
-                    rules={[{ required: true, message: 'Please input search!' }]}
+                    rules={[{ required: true, message: t('modal.filter.error', 'Please input search') }]}
                 >
                     <Input />
                 </Form.Item>
                 <Form.Item className="text-end mb-0 mt-3">
                     <Button type="primary" htmlType="submit">
-                        Submit
+                        {t('label.submit', 'Submit', { ns: 'base' })}
                     </Button>
                 </Form.Item>
             </Form>
