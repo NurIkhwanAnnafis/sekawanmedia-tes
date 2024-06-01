@@ -1,14 +1,20 @@
-import { Badge, Button, Divider, Dropdown, Input, Menu, Select } from 'antd';
-import { BellOutlined, SearchOutlined } from '@ant-design/icons';
+import { Badge, Button, Divider, Dropdown, Menu, Select } from 'antd';
+import { BellOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { IStore } from '../../../redux/model.store';
-
-const { Option } = Select;
+import { useContext } from 'react';
+import { ContextHeader } from '../context/ContextProvider';
+import { debounce } from 'lodash';
 
 const Notif: React.FC = () => {
   const { t } = useTranslation(['base']);
   const notification = useSelector((state: IStore) => state.notification);
+  const {
+    options,
+    handleSearch,
+    handleClick
+  } = useContext(ContextHeader);
 
   const menu = (
     <Menu style={{ width: 250 }} className="p-3">
@@ -40,10 +46,15 @@ const Notif: React.FC = () => {
       <Select
         placeholder={t('notification.search', 'search ticket')}
         size="small"
-        options={[]}
+        options={options}
         showSearch
         showArrow={false}
-        style={{ marginTop: 4, width: 150 }}
+        style={{ marginTop: 4, width: 180, marginRight: 8 }}
+        defaultActiveFirstOption={false}
+        filterOption={false}
+        onSearch={debounce((value) => handleSearch(value), 500)}
+        onChange={(e) => handleClick(e)}
+        notFoundContent={null}
       />
       <Dropdown
         overlay={menu}

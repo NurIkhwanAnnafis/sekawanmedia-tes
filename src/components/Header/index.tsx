@@ -25,7 +25,10 @@ const Index: React.FC<Props> = (props) => {
   const { collapsed, setCollapsed, isMobile, title, id } = props;
   const {
     handleLogout,
-    current
+    current,
+    options,
+    handleSearch,
+    handleClick
   } = useHeader();
 
   const widthBoxHeader = !isMobile ? { width: `calc(100% - 220px)` } : { width: `100%` };
@@ -35,6 +38,9 @@ const Index: React.FC<Props> = (props) => {
       value={{
         handleLogout,
         current,
+        options,
+        handleSearch,
+        handleClick
       }}
     >
       <Header className="box-header">

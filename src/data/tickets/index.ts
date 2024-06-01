@@ -25,6 +25,28 @@ export const getTickets = async (params: IParams): Promise<ITickets> => {
     }
 };
 
+export const getTicketsSearch = async (q: string): Promise<ITickets> => {
+    const params = {
+        q,
+        limit: 10,
+        skip: 0,
+    }
+
+    try {
+        const res: ITickets = await httpService.get(`${SERVICE}/search`, { params, baseURL: URL_API_TICKETS });
+
+        return res;
+    } catch (error: any) {
+        ErrorNotification(error);
+        return {
+            products: [],
+            limit: 0,
+            skip: 0,
+            total: 0,
+        };
+    }
+};
+
 export const getTicketsDetail = async (id: string | number): Promise<IProducts> => {
     try {
         const res: IProducts = await httpService.get(SERVICE + `/${id}`, { baseURL: URL_API_TICKETS });

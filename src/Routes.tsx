@@ -1,5 +1,4 @@
 import React, { Suspense, useEffect } from 'react';
-import { connect } from 'react-redux';
 import { Route, Routes as Switch, useLocation } from 'react-router-dom';
 import Loading from './components/Loading/Loading';
 import { checkMenuRoles } from './components/Sider/utils';

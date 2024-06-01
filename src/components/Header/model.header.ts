@@ -7,4 +7,7 @@ export interface ICurrent {
 export interface IHeader {
     handleLogout: () => void;
     current: ICurrent;
+    options: Array<{ label: string; value: string | number }>,
+    handleSearch: (q: string) => void,
+    handleClick: (id: string | number) => void
 }
