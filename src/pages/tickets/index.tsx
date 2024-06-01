@@ -33,6 +33,7 @@ const Tickets: React.FC = () => {
         handleCloseModalFilter,
         handleSubmitFilter,
         params,
+        handleShowDetail,
     } = useTicketList();
 
     return (
@@ -58,6 +59,7 @@ const Tickets: React.FC = () => {
                     handleCloseModalFilter,
                     handleSubmitFilter,
                     params,
+                    handleShowDetail,
                 }}
             >
                 <Card className="styleCardTicket">

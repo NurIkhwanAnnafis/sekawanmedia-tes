@@ -6,12 +6,14 @@ import './index.scss';
 import DropdownProfile from './section/Drodown.Profile';
 import { ContextHeader } from './context/ContextProvider';
 import { useHeader } from './context/useHeader';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   collapsed: boolean;
   setCollapsed: (flag: boolean) => void;
   isMobile: boolean;
   title: string;
+  id: string;
   isUpdateUser?: boolean;
 }
 
@@ -19,7 +21,8 @@ const { Header } = Layout;
 const { Title } = Typography;
 
 const Index: React.FC<Props> = (props) => {
-  const { collapsed, setCollapsed, isMobile, title } = props;
+  const { i18n } = useTranslation();
+  const { collapsed, setCollapsed, isMobile, title, id } = props;
   const {
     handleLogout,
     current
@@ -38,7 +41,7 @@ const Index: React.FC<Props> = (props) => {
         <div className="d-flex">
           <div className="header-container" style={widthBoxHeader}>
             <div className="box-title">
-              <Title level={5}>{title}</Title>
+              <Title level={5}>{i18n.language === 'en' ? title : id}</Title>
               <div className="d-flex align-items-center">
                 {isMobile && (
                   <Button

@@ -1,24 +1,24 @@
-import { Avatar, Badge, Button, Divider, Dropdown, Menu } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { Badge, Button, Divider, Dropdown, Menu } from 'antd';
 import { BellOutlined, SearchOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 
 const Notif: React.FC = () => {
-  const navigate = useNavigate();
+  const { t } = useTranslation(['base']);
 
   const menu = (
     <Menu style={{ width: 250 }} className="p-3">
-      <h5 className="mb-0">Notifikasi</h5>
+      <h5 className="mb-0">{t('notification.title', 'Notifikasi')}</h5>
       <Divider className="my-3" />
 
       <div>
         <p className="text-muted">
-          <i>Belum ada notifikasi</i>
+          <i>{t('notification.no', 'Belum ada notifikasi')}</i>
         </p>
       </div>
 
       <div className="text-center">
-        <Button type="link" onClick={() => navigate('/notification')}>
-          Lihat Semua
+        <Button type="link" onClick={() => {}}>
+          {t('notification.see', 'Lihat Semua')}
         </Button>
       </div>
     </Menu>

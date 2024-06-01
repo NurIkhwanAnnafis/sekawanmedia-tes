@@ -1,0 +1,31 @@
+{
+    "unresolved": "Unresolved",
+    "overdue": "Overdue",
+    "open": "Open",
+    "hold": "On hold",
+    "trend": "Today's trends",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "resolved": "Resolved",
+    "received": "Received",
+    "average_req_time": "Average First response time",
+    "average_res_time": "Average response time",
+    "sla": "Resolution within SLA",
+    "unresolved_tickets": {
+        "title": "Unresolved tickets",
+        "desc1": "Group",
+        "desc2": "Support",
+        "view": "View details",
+        "list": [
+            "Waiting on Feature Request",
+            "Awaiting Customer Response",
+            "Awaiting Developer Fix",
+            "Pending"
+        ]
+    },
+    "tasks": {
+        "title": "Tasks",
+        "view": "View all",
+        "create": "Create new task"
+    }
+}

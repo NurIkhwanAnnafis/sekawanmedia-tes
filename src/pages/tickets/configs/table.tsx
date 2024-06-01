@@ -1,4 +1,4 @@
-import { Avatar, Col, Row, Space, Table, Tag, Typography } from 'antd';
+import { Avatar, Col, Row, Typography } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { IProducts } from '../model.tickets';
 import moment from 'moment';
@@ -10,9 +10,10 @@ const { Text } = Typography;
 
 interface IColumns {
     handleSetModalSelected: (type: 'approve' | 'reject', values: IProducts | null, open: boolean) => void
+    handleShowDetail: (id: string | number) => void
 }
 
-export const columns = ({ handleSetModalSelected }: IColumns): ColumnsType<IProducts> => [
+export const columns = ({ handleSetModalSelected, handleShowDetail }: IColumns): ColumnsType<IProducts> => [
     {
         title: 'Ticket details',
         dataIndex: 'title',
@@ -70,6 +71,11 @@ export const columns = ({ handleSetModalSelected }: IColumns): ColumnsType<IProd
         title: '',
         key: 'action',
         width: 100,
-        render: (_, record) => <ColumnAction onClick={(type, open) => handleSetModalSelected(type, record, open)} />,
+        render: (_, record) => (
+            <ColumnAction
+                onClick={(type, open) => handleSetModalSelected(type, record, open)}
+                onClickDetail={() => handleShowDetail(record.id)}
+            />
+        ),
     },
 ];

@@ -3,6 +3,6 @@ import { IContextAuth } from "../model.auth";
 
 export const ContextAuth = createContext<IContextAuth>({
     form: { email: '', password: '' },
-    handleSubmit: async () => {},
+    handleSubmit: async () => { },
     loading: false,
 });

@@ -1,15 +1,20 @@
 import { MoreOutlined } from "@ant-design/icons";
 import { Button, Dropdown, Menu } from "antd";
-import { IProducts } from "../model.tickets";
 
 interface Props {
     onClick: (type: 'approve' | 'reject', open: boolean) => void;
+    onClickDetail: () => void;
 }
 
-const ColumnAction: React.FC<Props> = ({ onClick }) => {
+const ColumnAction: React.FC<Props> = ({ onClick, onClickDetail }) => {
 
     const menu = (
         <Menu style={{ width: 100 }}>
+            <Menu.Item key="0">
+                <div onClick={onClickDetail}>
+                    <p>Detail</p>
+                </div>
+            </Menu.Item>
             <Menu.Item key="1">
                 <div onClick={() => onClick('approve', true)}>
                     <p>Approve</p>

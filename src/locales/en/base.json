@@ -1,0 +1,15 @@
+{
+    "label": {
+        "submit": "Submit",
+        "cancel": "Cancel"
+    },
+    "header": {
+        "logout": "Logout",
+        "language": "Language"
+    },
+    "notification": {
+        "title": "Notification",
+        "no": "No notification yet",
+        "see": "See all"
+    }
+}

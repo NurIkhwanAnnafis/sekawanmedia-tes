@@ -25,7 +25,7 @@ i18n
             order: ['customDetector'],
         },
         /* lng: 'id', */
-        fallbackLng: 'id',
+        fallbackLng: 'en',
         debug: false,
 
         interpolation: {

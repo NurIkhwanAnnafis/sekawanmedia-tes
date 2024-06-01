@@ -1,4 +1,4 @@
-import { Avatar, Col, Divider, Drawer, Layout, Menu, Row, Typography } from 'antd';
+import { Avatar, Divider, Drawer, Layout, Menu, Typography } from 'antd';
 import { DesktopOutlined } from '@ant-design/icons';
 import { Fragment } from 'react';
 import { sidebarMenus } from '../../config/menus';
@@ -7,6 +7,7 @@ import './index.scss';
 import { getRole } from '../../utils/localStorage';
 import { checkMenuRoles } from './utils';
 import BoxProfileMobile from './section/Box.Profile.Mobile';
+import { useTranslation } from 'react-i18next';
 
 const { Title } = Typography;
 
@@ -20,6 +21,7 @@ const { Sider } = Layout;
 
 const defaultIcon = <DesktopOutlined />;
 const Index: React.FC<Props> = (props) => {
+  const { i18n } = useTranslation();
   const { collapsed, isMobile, setCollapsed } = props;
   const navigate = useNavigate();
   const userRoles = checkMenuRoles(getRole());
@@ -45,7 +47,7 @@ const Index: React.FC<Props> = (props) => {
                     key={val.path}
                     icon={val.icon || defaultIcon}
                     onClick={() => navigate(val.path)}>
-                    {val.name}
+                    {i18n.language === 'en' ? val.name : val.id}
                   </Menu.Item>
                 ) : (
                   <Divider className="my-3" style={{ borderTop: '1px solid #9ea0ad6b' }} />
@@ -76,7 +78,7 @@ const Index: React.FC<Props> = (props) => {
                     key={val.path}
                     icon={val.icon || defaultIcon}
                     onClick={() => navigate(val.path)}>
-                    {val.name}
+                    {i18n.language === 'en' ? val.name : val.id}
                   </Menu.Item>
                 ) : (
                   <Divider className="my-3" style={{ borderTop: '1px solid #9ea0ad6b' }} />

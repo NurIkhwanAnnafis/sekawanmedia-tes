@@ -1,0 +1,15 @@
+{
+    "label": {
+        "submit": "Simpan",
+        "cancel": "Batal"
+    },
+    "header": {
+        "logout": "Keluar",
+        "language": "Bahasa"
+    },
+    "notification": {
+        "title": "Notifikasi",
+        "no": "Belum ada notifikasi",
+        "see": "Lihat semua"
+    }
+}

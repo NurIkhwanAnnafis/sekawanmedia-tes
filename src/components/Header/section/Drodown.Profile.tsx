@@ -1,11 +1,13 @@
-import { Avatar, Divider, Dropdown, Menu, Typography } from 'antd';
+import { Avatar, Divider, Dropdown, Menu, Switch, Typography } from 'antd';
 import React, { useContext, useEffect, useState } from 'react';
 import Notif from './Notif';
 import { UserOutlined } from '@ant-design/icons';
 import { ContextHeader } from '../context/ContextProvider';
+import { useTranslation } from 'react-i18next';
 const { Text } = Typography;
 
 const DropdownProfile: React.FC = (props) => {
+  const { t, i18n } = useTranslation(['base']);
   const [hiddenText, setHiddenText] = useState<boolean>(false);
   const {
     handleLogout,
@@ -14,9 +16,20 @@ const DropdownProfile: React.FC = (props) => {
 
   const menu = (
     <Menu style={{ width: 170 }}>
+      <Menu.Item key="2">
+        <div className="d-flex justify-content-between align-items-center" onClick={(e) => e ? e.stopPropagation() : {}}>
+          <p>{t('header.language', 'Bahasa')}</p>
+          <Switch
+            checkedChildren="en"
+            unCheckedChildren="id"
+            checked={i18n.language === 'en'}
+            onChange={(check) => i18n.changeLanguage(check ? 'en' : 'id')}
+          />
+        </div>
+      </Menu.Item>
       <Menu.Item key="3">
         <div onClick={() => handleLogout()}>
-          <p>Keluar Aplikasi</p>
+          <p>{t('header.logout', 'Keluar')}</p>
         </div>
       </Menu.Item>
     </Menu>

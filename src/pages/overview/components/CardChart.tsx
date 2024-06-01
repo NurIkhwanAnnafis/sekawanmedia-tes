@@ -15,6 +15,7 @@ import { Line } from "react-chartjs-2";
 import moment from "moment";
 import { ContextOverview } from "../context/ContextProvider";
 import { convertSecondstoHours, convertSecondstoMinutes } from "../configs/helper";
+import { useTranslation } from "react-i18next";
 
 const { Title: TitleText, Text } = Typography;
 
@@ -29,6 +30,7 @@ ChartJS.register(
 );
 
 const CardChart: React.FC = () => {
+    const { t, i18n } = useTranslation(['overview']);
     const {
         dataGraph: { graph, summary }
     } = useContext(ContextOverview);
@@ -42,14 +44,14 @@ const CardChart: React.FC = () => {
         labels,
         datasets: [
             {
-                label: "Today",
+                label: t('today', 'Today'),
                 data: labels.map((id: number) => graph.today.find(x => x.id === id)?.total || 0),
                 borderColor: "rgb(53, 162, 235)",
                 cubicInterpolationMode: "monotone",
                 backgroundColor: "rgba(53, 162, 235, 0.5)",
             },
             {
-                label: "Yesterday",
+                label: t('yesterday', 'Yesterday'),
                 data: labels.map((id: number) => graph.yesterday.find(x => x.id === id)?.total || 0),
                 borderColor: "rgb(223,224,235)",
                 cubicInterpolationMode: "monotone",
@@ -72,7 +74,7 @@ const CardChart: React.FC = () => {
 
             title: {
                 display: true,
-                text: `as of ${moment().format('DD MMM YYYY, h:mm a')}`,
+                text: `as of ${moment().locale(i18n.language).format('DD MMM YYYY, h:mm a')}`,
                 position: "top" as const,
                 align: 'start' as const
             },
@@ -98,7 +100,7 @@ const CardChart: React.FC = () => {
         <Row gutter={[0, 0]}>
             <Col md={16} sm={24} xs={24}>
                 <Card className="styleCardOnlyLeft" style={{ textAlign: 'start' }}>
-                    <TitleText className="mb-0" level={5}>Today's trends</TitleText>
+                    <TitleText className="mb-0" level={5}>{t('trend', `Today's trends`)}</TitleText>
                     <Line options={options} data={data} />
                 </Card>
             </Col>
@@ -106,31 +108,31 @@ const CardChart: React.FC = () => {
                 <Row gutter={24}>
                     <Col span={24}>
                         <Card className="styleCardOnlyRight" style={{ textAlign: 'center' }}>
-                            <Text strong>Resolved</Text>
+                            <Text strong>{t('resolved', 'Resolved')}</Text>
                             <TitleText level={5} className="mt-1 mb-0">{summary.resolved}</TitleText>
                         </Card>
                     </Col>
                     <Col span={24}>
                         <Card className="styleCardOnlyRight" style={{ textAlign: 'center' }}>
-                            <Text strong>Received</Text>
+                            <Text strong>{t('received', 'Received')}</Text>
                             <TitleText level={5} className="mt-1 mb-0">{summary.received}</TitleText>
                         </Card>
                     </Col>
                     <Col span={24}>
                         <Card className="styleCardOnlyRight" style={{ textAlign: 'center' }}>
-                            <Text strong>Average First response time</Text>
+                            <Text strong>{t('average_req_time', 'Average First response time')}</Text>
                             <TitleText level={5} className="mt-1 mb-0">{convertSecondstoMinutes(summary.average_first_response_time)}</TitleText>
                         </Card>
                     </Col>
                     <Col span={24}>
                         <Card className="styleCardOnlyRight" style={{ textAlign: 'center' }}>
-                            <Text strong>Average response time</Text>
+                            <Text strong>{t('average_res_time', 'Average response time')}</Text>
                             <TitleText level={5} className="mt-1 mb-0">{convertSecondstoHours(summary.average_response_time)}</TitleText>
                         </Card>
                     </Col>
                     <Col span={24}>
                         <Card className="styleCardOnlyRight" style={{ textAlign: 'center' }}>
-                            <Text strong>Resolution within SLA</Text>
+                            <Text strong>{t('sla', 'Resolution within SLA')}</Text>
                             <TitleText level={5} className="mt-1 mb-0">{summary.resolution_within_sla}%</TitleText>
                         </Card>
                     </Col>

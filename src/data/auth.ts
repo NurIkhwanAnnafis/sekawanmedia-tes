@@ -2,14 +2,19 @@ import { ErrorNotification } from '../components/Notification/CustomNotification
 import httpService from '../services/http.service';
 import { deleteLocalUser, setUser } from '../utils/localStorage';
 
-export const requestLogin = async (data: object) => {
+type IPayloadLogin = { email: string; password: string; role: 'admin' | 'guest' | '' }
+type ILogin = { email: string; password: string; role: 'admin' | 'guest' | ''; token: string }
+
+export const requestLogin = async (payload: IPayloadLogin): Promise<ILogin> => {
   try {
-    const res: any = await httpService.post('/auth/web', data);
-    setUser(res.data);
+    const res: ILogin = await httpService.post(`auth/login/${payload.role}`, payload);
+    setUser(res);
 
     return res;
   } catch (error: any) {
-    return ErrorNotification(error);
+    ErrorNotification(error);
+
+    return { email: '', password: '', role: '', token: '' };
   }
 };
 

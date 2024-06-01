@@ -1,0 +1,31 @@
+{
+    "unresolved": "Belum terselesaikan",
+    "overdue": "Terlambat",
+    "open": "Buka",
+    "hold": "Tertahan",
+    "trend": "Tren saat ini",
+    "today": "Hari ini`",
+    "yesterday": "Kemarin",
+    "resolved": "Terselesaikan",
+    "received": "Diterima",
+    "average_req_time": "Rata-rata waktu respons pertama",
+    "average_res_time": "Waktu respons rata-rata",
+    "sla": "Resolusi dalam SLA",
+    "unresolved_tickets": {
+        "title": "Tiket yang belum terselesaikan",
+        "desc1": "Kelompol",
+        "desc2": "Dukungan",
+        "view": "Lihat detail",
+        "list": [
+            "Menunggu Permintaan Fitur",
+            "Menunggu Respon Pelanggan",
+            "Menunggu Perbaikan Pengembang",
+            "Tertunda"
+        ]
+    },
+    "tasks": {
+        "title": "Tugas",
+        "view": "Lihat semua",
+        "create": "Buat tugas baru"
+    }
+}

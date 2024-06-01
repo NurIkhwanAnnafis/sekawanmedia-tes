@@ -4,7 +4,7 @@ import { IUser } from "./model";
 
 const SERVICE = '/user/'
 
-export const getUser = async (role: 'admin' | 'guest' = 'guest'): Promise<IUser> => {
+export const getUser = async (role: 'admin' | 'guest' | '' = 'guest'): Promise<IUser> => {
     try {
         const res: IUser = await httpService.get(SERVICE + `/${role}`);
 

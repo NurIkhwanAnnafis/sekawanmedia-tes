@@ -1,7 +1,8 @@
 interface IAuth {
-  user?: { name: string, email: string };
+  name?: string;
+  email?: string;
   token?: string;
-  role?: string;
+  role?: 'admin' | 'guest' | '';
 }
 
 export const dataRawUser = () => {
@@ -15,7 +16,7 @@ export const dataRawUser = () => {
 };
 
 export const getToken = () => dataRawUser()?.token;
-export const getUser = () => dataRawUser()?.user;
+export const getUser = () => ({ name: dataRawUser()?.name, email: dataRawUser()?.email });
 export const getRole = () => dataRawUser()?.role || '';
 
 export const setUser = async (data: IAuth) =>

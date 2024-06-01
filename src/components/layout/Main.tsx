@@ -12,10 +12,11 @@ interface Props {
   children: any;
   title: string;
   loading?: boolean;
+  id: string;
 }
 
 const Main: React.FC<Props> = (props) => {
-  const { children, title, loading } = props;
+  const { children, title, loading, id } = props;
   const [collapsed, setCollapsed] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ const Main: React.FC<Props> = (props) => {
     <Layout>
       <Header
         title={title}
+        id={id}
         isMobile={isMobile}
         collapsed={collapsed}
         setCollapsed={setCollapsed}

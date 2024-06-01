@@ -2,10 +2,12 @@ import { Button, Col, Form, Input, Row, Typography } from 'antd';
 import React, { useContext } from 'react';
 import { connect } from 'react-redux';
 import { ContextAuth } from '../context/ContextProvider';
+import { useTranslation } from 'react-i18next';
 
 const { Text } = Typography;
 
-const FormLogin: React.FC = (props) => {
+const FormLogin: React.FC = () => {
+  const { t } = useTranslation(['auth', 'base']);
   const {
     form,
     handleSubmit,
@@ -40,8 +42,8 @@ const FormLogin: React.FC = (props) => {
           <Form.Item
             name="email"
             className="mb-0 text-start"
-            rules={[{ required: true, message: 'Email must be filled' }]}>
-            <Input placeholder="Please fill in email" />
+            rules={[{ required: true, message: t('error.email', 'Email must be filled') }]}>
+            <Input placeholder={t('placeholder.email', 'Please fill in email')} />
           </Form.Item>
         </Col>
       </Row>
@@ -53,7 +55,7 @@ const FormLogin: React.FC = (props) => {
               PASSWORD
             </Text>
             <Text disabled style={{ cursor: 'pointer', fontSize: 12 }}>
-              Forgot password?
+              {t('forgot', 'Forgot password?')}
             </Text>
           </Row>
         </Col>
@@ -62,11 +64,11 @@ const FormLogin: React.FC = (props) => {
             name="password"
             className="text-start"
             rules={[
-              { required: true, message: 'Please fill in Password.' },
-              { min: 8, message: 'Password must be minimum 8 characters.' }
+              { required: true, message: t('error.password1', 'Please fill in Password') },
+              { min: 8, message: t('error.password2', 'Password must be minimum 8 characters') }
             ]}
           >
-            <Input.Password placeholder="Please fill in Password" />
+            <Input.Password placeholder={t('placeholder.password', "Please fill in Password")} />
           </Form.Item>
         </Col>
       </Row>
@@ -79,7 +81,7 @@ const FormLogin: React.FC = (props) => {
           style={{ width: '100%', borderRadius: 4 }}
           loading={loading}
         >
-          Log In
+          {t('login', 'Log in')}
         </Button>
       </Form.Item>
     </Form>

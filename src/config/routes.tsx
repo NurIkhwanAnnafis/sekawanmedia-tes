@@ -12,6 +12,7 @@ const menus = [
     layout: Login,
     role: [''],
     title: 'Login',
+    id: 'Login',
   },
   {
     path: '/overview',
@@ -20,6 +21,7 @@ const menus = [
     layout: Main,
     role: ['admin', 'guest'],
     title: 'Overview',
+    id: 'Ringkasan',
   },
   {
     path: '/tickets',
@@ -28,6 +30,16 @@ const menus = [
     layout: Main,
     role: ['admin', 'guest'],
     title: 'Tickets',
+    id: 'Tiket',
+  },
+  {
+    path: '/tickets/:id',
+    exact: true,
+    component: lazy(() => import('../pages/tickets/components/Detail')),
+    layout: Main,
+    role: ['admin'],
+    title: 'Detail Tickets',
+    id: 'Detail Tiket',
   },
   {
     path: '/ideas',
@@ -36,6 +48,7 @@ const menus = [
     layout: Main,
     role: ['admin'],
     title: 'Ideas',
+    id: 'Ide'
   },
   {
     path: '/contacts',
@@ -44,6 +57,7 @@ const menus = [
     layout: Main,
     role: ['admin'],
     title: 'Contacts',
+    id: 'Kontak',
   },
   {
     path: '/agents',
@@ -52,6 +66,7 @@ const menus = [
     layout: Main,
     role: ['admin'],
     title: 'Agents',
+    id: 'Agen',
   },
   {
     path: '/articles',
@@ -60,6 +75,7 @@ const menus = [
     layout: Main,
     role: ['admin'],
     title: 'Articles',
+    id: 'Artikel',
   },
   {
     path: '/settings',
@@ -68,6 +84,7 @@ const menus = [
     layout: Main,
     role: ['admin'],
     title: 'Settings',
+    id: 'Pengaturan',
   },
   {
     path: '/subscription',
@@ -76,14 +93,16 @@ const menus = [
     layout: Main,
     role: ['admin'],
     title: 'Subscription',
+    id: 'Langganan',
   },
   {
     path: '/not-found',
     exact: true,
     component: lazy(() => import('../pages/not-found')),
     layout: NotFound,
-    role: [''],
+    role: ['admin', 'guest'],
     title: 'Not Found',
+    id: 'Tidak Ditemukan'
   },
 ];
 

@@ -31,7 +31,8 @@ export const defaultValuesTickets = {
         search: '',
         skip: 0,
         sortBy: '',
-    } as IParams
+    } as IParams,
+    handleShowDetail: (id: string | number) => { },
 }
 
 export const ContextTickets = createContext<IContextTickets>(defaultValuesTickets);

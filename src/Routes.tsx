@@ -6,12 +6,15 @@ import { checkMenuRoles } from './components/Sider/utils';
 import { menus } from './config/routes';
 import { getRole, getUser } from './utils/localStorage';
 import { handleRedirect } from './utils/pages';
+import { useTranslation } from 'react-i18next';
+import moment from 'moment';
 
 interface ILayoutProps {
   path: string;
   layout: React.ComponentType<any>;
   component: any;
   title: string;
+  id: string;
   role: Array<string>;
 }
 
@@ -20,7 +23,9 @@ interface Props {
 }
 
 const Routes: React.FC<Props> = () => {
-  const currentUser = getUser();
+  const { i18n } = useTranslation();
+  moment().locale(i18n.language);
+  const currentUser = getUser().name;
   const currentRole = getRole();
   const location = useLocation();
 
@@ -63,7 +68,7 @@ const Routes: React.FC<Props> = () => {
               key={detail.path}
               path={detail.path}
               element={
-                <detail.layout {...global} title={detail.title}>
+                <detail.layout {...global} title={detail.title} id={detail.id}>
                   <Suspense fallback={<Loading />}>
                     <detail.component />
                   </Suspense>

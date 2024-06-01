@@ -5,6 +5,8 @@ export interface IProducts {
     brand: string;
     returnPolicy: string;
     thumbnail: string;
+    description?: string;
+    sku?: string;
 }
 
 export interface ITickets {
@@ -55,4 +57,5 @@ export interface IContextTickets {
     handleCloseModalFilter: () => void;
     handleSubmitFilter: (search: string) => void;
     params: IParams,
+    handleShowDetail: (id: string | number) => void;
 }

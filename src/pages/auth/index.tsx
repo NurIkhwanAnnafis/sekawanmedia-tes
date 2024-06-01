@@ -8,7 +8,7 @@ import { ContextAuth } from './context/ContextProvider';
 const { Text, Title, Link } = Typography;
 
 const Auth: React.FC = () => {
-  const { form, handleSubmit, loading } = useAuthForm();
+  const { form, handleSubmit, loading, t } = useAuthForm();
 
   return (
     <ContextAuth.Provider
@@ -32,9 +32,9 @@ const Auth: React.FC = () => {
           <Text style={{ color: 'rgba(0, 0, 0, 0.25)', fontWeight: 600, fontSize: 16 }}>
             Dashboard Kit
           </Text>
-          <Title level={3}>Log In to Dashboard Kit</Title>
+          <Title level={3}>{t('title', 'Log In to Dashboard Kit')}</Title>
           <Text style={{ color: 'rgba(0, 0, 0, 0.25)', fontWeight: 600 }}>
-            Enter your email and password below
+            {t('description', 'Enter your email and password below')}
           </Text>
 
           <div className="box-form">
@@ -42,9 +42,9 @@ const Auth: React.FC = () => {
           </div>
 
           <Text style={{ color: 'rgba(0, 0, 0, 0.25)', fontWeight: 600 }}>
-            {`Don't have an account?`}{' '}
-            <Link href="" target="_blank">
-              Sign up
+            {t('noAccount.desc1', `Don't have an account?`)}{' '}
+            <Link href="sekawanmedia.co.id" target="_blank">
+              {t('noAccount.desc2', 'Sign up')}
             </Link>
           </Text>
         </Col>

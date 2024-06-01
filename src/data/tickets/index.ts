@@ -25,6 +25,26 @@ export const getTickets = async (params: IParams): Promise<ITickets> => {
     }
 };
 
+export const getTicketsDetail = async (id: string | number): Promise<IProducts> => {
+    try {
+        const res: IProducts = await httpService.get(SERVICE + `/${id}`, { baseURL: URL_API_TICKETS });
+
+        return res;
+    } catch (error: any) {
+        ErrorNotification(error);
+        return {
+            id: 0,
+            title: '',
+            rating: 0,
+            brand: '',
+            returnPolicy: '',
+            thumbnail: '',
+            description: '',
+            sku: '',
+        };
+    }
+};
+
 export const createTickets = async (payload: IPayload): Promise<void> => {
     try {
         await httpService.post(SERVICE + url.add, JSON.stringify(payload), { baseURL: URL_API_TICKETS });

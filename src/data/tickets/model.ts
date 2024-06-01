@@ -5,6 +5,8 @@ export type IProducts = {
     brand: string;
     returnPolicy: string;
     thumbnail: string;
+    description?: string;
+    sku?: string;
 }
 
 export type ITickets = {

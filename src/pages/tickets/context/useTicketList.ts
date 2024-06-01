@@ -5,6 +5,7 @@ import { getTickets, createTickets, updateTickets } from "../../../data/tickets"
 import { ErrorNotification, SuccessNotification } from "../../../components/Notification/CustomNotification";
 import { useDispatch } from "react-redux";
 import { setLoading as setLoadingGlobal } from "../../../redux/layout/layout.actions";
+import { useNavigate } from "react-router-dom";
 
 interface IParamsHandleFetch {
     page: number;
@@ -12,6 +13,7 @@ interface IParamsHandleFetch {
 }
 
 export const useTicketList = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const [dataTickets, setDataTickets] = useState<ITickets>(defaultValuesTickets.dataTickets);
     const [loading, setLoading] = useState<boolean>(false);
@@ -93,6 +95,8 @@ export const useTicketList = () => {
         }
     }
 
+    const handleShowDetail = (id: string | number) => navigate(`/tickets/${id}`);
+
     const handleOpenModalSort = () => setModalSort(true);
     const handleCloseModalSort = () => setModalSort(false);
 
@@ -133,5 +137,6 @@ export const useTicketList = () => {
         handleCloseModalFilter,
         handleSubmitFilter,
         params,
+        handleShowDetail,
     }
 }
