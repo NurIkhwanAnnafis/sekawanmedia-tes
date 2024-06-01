@@ -9,6 +9,8 @@ import Filter from './components/Filter';
 import List from './components/List';
 import ModalCreate from './components/ModalCreate';
 import ModalAction from './components/ModalAction';
+import ModalSort from './components/ModalSort';
+import ModalFilter from './components/ModalFilter';
 
 const Tickets: React.FC = () => {
     const {
@@ -22,6 +24,15 @@ const Tickets: React.FC = () => {
         modalSelected,
         handleSetModalSelected,
         handleUpdateStatus,
+        modalSort,
+        handleOpenModalSort,
+        handleCloseModalSort,
+        handleSubmitSort,
+        modalFilter,
+        handleOpenModalFilter,
+        handleCloseModalFilter,
+        handleSubmitFilter,
+        params,
     } = useTicketList();
 
     return (
@@ -38,6 +49,15 @@ const Tickets: React.FC = () => {
                     modalSelected,
                     handleSetModalSelected,
                     handleUpdateStatus,
+                    modalSort,
+                    handleOpenModalSort,
+                    handleCloseModalSort,
+                    handleSubmitSort,
+                    modalFilter,
+                    handleOpenModalFilter,
+                    handleCloseModalFilter,
+                    handleSubmitFilter,
+                    params,
                 }}
             >
                 <Card className="styleCardTicket">
@@ -47,6 +67,8 @@ const Tickets: React.FC = () => {
 
                     <ModalCreate />
                     <ModalAction />
+                    {modalSort && <ModalSort />}
+                    {modalFilter && <ModalFilter />}
                 </Card>
             </ContextTickets.Provider>
         </Wrapper>

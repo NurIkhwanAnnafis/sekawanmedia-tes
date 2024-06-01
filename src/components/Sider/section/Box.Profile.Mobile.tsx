@@ -1,44 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import logo from '../../../assets/icons/MO_Logo_big.svg';
-import profileIcon from '../../../assets/icons/profile-icon.svg';
-import { Avatar } from 'antd';
+import { Avatar, Typography } from 'antd';
 
-interface Props {
-  isMobile?: boolean;
-}
+const { Title } = Typography;
 
-const BoxProfileMobile: React.FC<Props> = (props) => {
-  const { isMobile } = props;
-  const [current, setCurrent] = useState<{
-    box: boolean;
-    name: string;
-    status: string;
-  }>({
-    box: false,
-    name: '',
-    status: '',
-  });
-
-  const styleText = isMobile ? { color: 'white' } : {};
-
+const BoxProfileMobile: React.FC = () => {
   return (
-    <div className="box-user">
+    <div className="d-flex align-items-center justify-content-center gap-2 mb-5">
       <Avatar
-        size={144}
-        style={{ background: '#5574FF', color: '#ffffff', fontSize: 32, fontWeight: 700 }}>
+        size={48}
+        style={{ background: '#5574FF', color: '#ffffff', fontSize: 14 }}>
         D
       </Avatar>
-      <br />
-      <Avatar
-        size={60}
-        style={{ background: '#5574FF', color: '#ffffff', fontSize: 32, fontWeight: 700 }}>
-        D
-      </Avatar>
-      <br />
-      <h5 className="mb-0" style={styleText}>
-        {current.name}
-      </h5>
+      <Title level={5} className="mb-0" style={{ color: '#9EA0AD' }}>Dashboard Kit</Title>
     </div>
   );
 };

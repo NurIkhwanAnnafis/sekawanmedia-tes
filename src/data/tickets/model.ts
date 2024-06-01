@@ -15,11 +15,11 @@ export type ITickets = {
 }
 
 export type IParams = {
-    search?: string;
+    q?: string;
     limit?: number;
     skip?: number;
-    sortBy?: string;
-    order?: 'asc' | 'desc'
+    sortBy?: 'name' | 'brand' | 'rating' | '';
+    order?: 'asc' | 'desc' | '';
 }
 
-export type IPayload = { title: string; customer: string; rating: number }
+export type IPayload = { title: string; customer: string; rating: number, status?: 'approve' | 'reject' | '' }

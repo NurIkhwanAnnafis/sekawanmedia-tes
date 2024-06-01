@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { IContextTickets, IFormCreate, IProducts } from "../model.tickets";
+import { IContextTickets, IFormCreate, IParams, IProducts } from "../model.tickets";
 
 export const defaultValuesTickets = {
     dataTickets: {
@@ -16,7 +16,22 @@ export const defaultValuesTickets = {
     handleSubmit: (values: IFormCreate) => { },
     modalSelected: { type: '', values: null, open: false } as { type: '', values: IProducts | null, open: boolean },
     handleSetModalSelected: (type: 'approve' | 'reject' | '', values: IProducts | null, open: boolean) => { },
-    handleUpdateStatus: () => { }
+    handleUpdateStatus: () => { },
+    modalSort: false,
+    handleOpenModalSort: () => { },
+    handleCloseModalSort: () => { },
+    handleSubmitSort: (sortBy: 'name' | 'brand' | 'rating' | '', order: 'asc' | 'desc' | '') => { },
+    modalFilter: false,
+    handleOpenModalFilter: () => { },
+    handleCloseModalFilter: () => { },
+    handleSubmitFilter: (search: string) => { },
+    params: {
+        limit: 10,
+        order: 'asc',
+        search: '',
+        skip: 0,
+        sortBy: '',
+    } as IParams
 }
 
 export const ContextTickets = createContext<IContextTickets>(defaultValuesTickets);

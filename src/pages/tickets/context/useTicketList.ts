@@ -18,7 +18,7 @@ export const useTicketList = () => {
     const [params, setParams] = useState<IParams>({
         limit: 10,
         order: 'asc',
-        search: '',
+        q: '',
         skip: 0,
         sortBy: '',
     });
@@ -28,6 +28,8 @@ export const useTicketList = () => {
         values: IProducts | null;
         open: boolean;
     }>({ type: '', values: null, open: false })
+    const [modalSort, setModalSort] = useState<boolean>(false);
+    const [modalFilter, setModalFilter] = useState<boolean>(false);
 
     const handleFetch = async (values?: IParamsHandleFetch) => {
         setLoading(true);
@@ -40,7 +42,7 @@ export const useTicketList = () => {
                 order: params.order,
                 sortBy: params.sortBy,
             },
-            ...params.search && { search: '' },
+            ...params.q && { q: params.q },
         }
 
         const res = await getTickets(currentParams);
@@ -75,7 +77,8 @@ export const useTicketList = () => {
         const payload = {
             title: modalSelected.values?.title || '',
             customer: modalSelected.values?.brand || '',
-            rating: modalSelected.values?.rating || 0
+            rating: modalSelected.values?.rating || 0,
+            status: modalSelected.type,
         }
 
         try {
@@ -90,6 +93,21 @@ export const useTicketList = () => {
         }
     }
 
+    const handleOpenModalSort = () => setModalSort(true);
+    const handleCloseModalSort = () => setModalSort(false);
+
+    const handleSubmitSort = (sortBy: 'name' | 'brand' | 'rating' | '', order: 'asc' | 'desc' | '') => {
+        setParams(prev => ({ ...prev, sortBy, order }));
+        handleCloseModalSort();
+    }
+
+    const handleOpenModalFilter = () => setModalFilter(true);
+    const handleCloseModalFilter = () => setModalFilter(false);
+
+    const handleSubmitFilter = (search: string) => {
+        setParams(prev => ({ ...prev, search }));
+        handleCloseModalFilter();
+    }
 
     useEffect(() => {
         handleFetch({ page: params.skip || 0, size: params.limit || 0 });
@@ -106,5 +124,14 @@ export const useTicketList = () => {
         modalSelected,
         handleSetModalSelected,
         handleUpdateStatus,
+        modalSort,
+        handleOpenModalSort,
+        handleCloseModalSort,
+        handleSubmitSort,
+        modalFilter,
+        handleOpenModalFilter,
+        handleCloseModalFilter,
+        handleSubmitFilter,
+        params,
     }
 }

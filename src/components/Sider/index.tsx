@@ -17,7 +17,6 @@ interface Props {
 }
 
 const { Sider } = Layout;
-const { SubMenu } = Menu;
 
 const defaultIcon = <DesktopOutlined />;
 const Index: React.FC<Props> = (props) => {
@@ -66,7 +65,7 @@ const Index: React.FC<Props> = (props) => {
           bodyStyle={{ background: '#001529', paddingLeft: 0, paddingRight: 0 }}
           width={300}>
           <div className="d-flex justify-content-center text-center">
-            <BoxProfileMobile isMobile={isMobile} />
+            <BoxProfileMobile />
           </div>
           <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
             {sidebarMenus.map(

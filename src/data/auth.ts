@@ -13,7 +13,7 @@ export const requestLogin = async (data: object) => {
   }
 };
 
-export const requestLogout = async (params: any) => {
+export const requestLogout = async () => {
   try {
     deleteLocalUser();
     window.location.href = '/login';

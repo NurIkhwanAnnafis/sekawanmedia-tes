@@ -13,7 +13,7 @@ export const useAuthForm = () => {
     handleSetLoading(false);
 
     try {
-      setUser({ role: 'admin', user: { name: 'Anjay', email: value.email }, token: 'asd' })
+      setUser({ role: 'guest', user: { name: 'Anjay', email: value.email }, token: 'asd' })
 
       setTimeout(() => {
         handleRedirect();
