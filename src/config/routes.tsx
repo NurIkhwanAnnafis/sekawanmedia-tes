@@ -37,7 +37,7 @@ const menus = [
     exact: true,
     component: lazy(() => import('../pages/tickets/components/Detail')),
     layout: Main,
-    role: ['admin'],
+    role: ['admin', 'guest'],
     title: 'Detail Tickets',
     id: 'Detail Tiket',
   },
@@ -97,6 +97,15 @@ const menus = [
   },
   {
     path: '/not-found',
+    exact: true,
+    component: lazy(() => import('../pages/not-found')),
+    layout: NotFound,
+    role: ['admin', 'guest'],
+    title: 'Not Found',
+    id: 'Tidak Ditemukan'
+  },
+  {
+    path: '/*',
     exact: true,
     component: lazy(() => import('../pages/not-found')),
     layout: NotFound,

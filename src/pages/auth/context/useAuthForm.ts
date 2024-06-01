@@ -13,7 +13,7 @@ export const useAuthForm = () => {
   const handleSetLoading = (flag: boolean) => setLoading(flag)
 
   const handleSubmit = async (values: IFormAuth) => {
-    handleSetLoading(false);
+    handleSetLoading(true);
 
     try {
       const payload = {
@@ -25,10 +25,7 @@ export const useAuthForm = () => {
       const res = await requestLogin(payload)
       setUser(res)
       
-      setTimeout(() => {
-        handleRedirect();
-      }, 1000)
-
+      handleRedirect();
     } catch (error: any) {
       if (error) {
         const { data } = error;

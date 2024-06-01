@@ -35,4 +35,8 @@ export interface IContextSummary {
     dataGraph: IGraph;
     dataUnresolved: IUnresolved;
     dataTasks: ITasks;
+    newTask: string;
+    handleChange: (value: string) => void;
+    handleCreateNewTask: () => void;
+    isAdmin: boolean;
 }

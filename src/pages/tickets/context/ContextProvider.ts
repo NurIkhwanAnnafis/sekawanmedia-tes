@@ -33,6 +33,7 @@ export const defaultValuesTickets = {
         sortBy: '',
     } as IParams,
     handleShowDetail: (id: string | number) => { },
+    isAdmin: false,
 }
 
 export const ContextTickets = createContext<IContextTickets>(defaultValuesTickets);

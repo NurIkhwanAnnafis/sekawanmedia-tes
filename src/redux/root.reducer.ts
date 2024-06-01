@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import { layoutReducer } from './layout/layout.reducer';
-import { authReducer } from './auth/auth.reducer';
+import { notificationReducer } from './notification/notification.reducer';
 
 const rootReducer = combineReducers({
   layout: layoutReducer,
-  auth: authReducer,
+  notification: notificationReducer,
 });
 
 export default rootReducer;

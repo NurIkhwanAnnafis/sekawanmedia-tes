@@ -6,7 +6,7 @@ const SERVICE = '/user/'
 
 export const getUser = async (role: 'admin' | 'guest' | '' = 'guest'): Promise<IUser> => {
     try {
-        const res: IUser = await httpService.get(SERVICE + `/${role}`);
+        const res: IUser = await httpService.get(SERVICE + role);
 
         return res;
     } catch (error: any) {

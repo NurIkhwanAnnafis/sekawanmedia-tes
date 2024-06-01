@@ -21,11 +21,8 @@ interface ILayoutProps {
   role: Array<string>;
 }
 
-interface Props {
-  currentUser?: null;
-}
 
-const Routes: React.FC<Props> = () => {
+const Routes: React.FC = () => {
   const { i18n } = useTranslation();
   moment().locale(i18n.language);
   const currentUser = getUser().name;
@@ -63,7 +60,11 @@ const Routes: React.FC<Props> = () => {
   const userRoles = checkMenuRoles(currentRole);
 
   return (
-    <ConfigProvider componentSize="middle" locale={i18n.language === 'en' ? en_US : id_ID}>
+    <ConfigProvider
+      componentSize="middle"
+      locale={i18n.language === 'en' ? en_US : id_ID}
+      prefixCls=""
+    >
       <Switch>
         {menus.map(
           (detail: ILayoutProps) =>
@@ -86,8 +87,4 @@ const Routes: React.FC<Props> = () => {
   );
 };
 
-const mapStateToProps = (state: any) => ({
-  currentUser: state.auth.currentUser,
-});
-
-export default connect(mapStateToProps, null)(Routes);
+export default Routes;

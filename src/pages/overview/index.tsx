@@ -13,16 +13,24 @@ const Overview: React.FC = () => {
     dataGraph,
     dataUnresolved,
     dataTasks,
+    handleChange,
+    handleCreateNewTask,
+    newTask,
+    isAdmin,
   } = useOverviewList();
 
   return (
     <Wrapper>
-      <ContextOverview.Provider 
+      <ContextOverview.Provider
         value={{
           summary,
           dataGraph,
           dataUnresolved,
           dataTasks,
+          handleChange,
+          handleCreateNewTask,
+          newTask,
+          isAdmin,
         }}
       >
         <Row gutter={[24, 24]} style={{ padding: '0px 6px' }}>

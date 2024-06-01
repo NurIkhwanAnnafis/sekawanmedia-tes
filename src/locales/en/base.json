@@ -5,11 +5,23 @@
     },
     "header": {
         "logout": "Logout",
-        "language": "Language"
+        "language": "Language",
+        "theme": "Theme"
     },
     "notification": {
         "title": "Notification",
         "no": "No notification yet",
-        "see": "See all"
+        "see": "See all",
+        "search": "search ticket"
+    },
+    "message": {
+        "ticket": {
+            "create": "Ticket Successfully Created",
+            "update": "Ticket Successfully Updated"
+        },
+        "task": {
+            "warningTitle": "Title is required",
+            "create": "Succesfully created task"
+        }
     }
 }

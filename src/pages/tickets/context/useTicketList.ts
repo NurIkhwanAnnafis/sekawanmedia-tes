@@ -6,6 +6,8 @@ import { ErrorNotification, SuccessNotification } from "../../../components/Noti
 import { useDispatch } from "react-redux";
 import { setLoading as setLoadingGlobal } from "../../../redux/layout/layout.actions";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { getRole } from "../../../utils/localStorage";
 
 interface IParamsHandleFetch {
     page: number;
@@ -13,8 +15,10 @@ interface IParamsHandleFetch {
 }
 
 export const useTicketList = () => {
+    const { t } = useTranslation(['base']);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const isAdmin = getRole() === 'admin';
     const [dataTickets, setDataTickets] = useState<ITickets>(defaultValuesTickets.dataTickets);
     const [loading, setLoading] = useState<boolean>(false);
     const [params, setParams] = useState<IParams>({
@@ -62,7 +66,7 @@ export const useTicketList = () => {
         try {
             await createTickets(values);
             handleCloseModalCreate();
-            SuccessNotification({ description: 'Ticket Successfully Created' });
+            SuccessNotification({ description: t('message.ticket.create', 'Ticket Successfully Created') });
             handleFetch({ page: params.skip || 0, size: params.limit || 0 });
         } catch (error: any) {
             ErrorNotification(error);
@@ -86,7 +90,7 @@ export const useTicketList = () => {
         try {
             await updateTickets(payload, modalSelected.values?.id || '');
             handleSetModalSelected("", null, false);
-            SuccessNotification({ description: 'Ticket Successfully Updated' });
+            SuccessNotification({ description: t('message.ticket.update', 'Ticket Successfully Updated') });
             handleFetch({ page: params.skip || 0, size: params.limit || 0 });
         } catch (error: any) {
             ErrorNotification(error);
@@ -138,5 +142,6 @@ export const useTicketList = () => {
         handleSubmitFilter,
         params,
         handleShowDetail,
+        isAdmin,
     }
 }

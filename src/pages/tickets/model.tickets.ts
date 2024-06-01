@@ -58,4 +58,5 @@ export interface IContextTickets {
     handleSubmitFilter: (search: string) => void;
     params: IParams,
     handleShowDetail: (id: string | number) => void;
+    isAdmin: boolean;
 }

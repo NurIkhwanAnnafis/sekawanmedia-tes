@@ -1,6 +1,5 @@
 import { Button, Col, Form, Input, Row, Typography } from 'antd';
 import React, { useContext } from 'react';
-import { connect } from 'react-redux';
 import { ContextAuth } from '../context/ContextProvider';
 import { useTranslation } from 'react-i18next';
 
@@ -88,8 +87,4 @@ const FormLogin: React.FC = () => {
   );
 };
 
-const mapStateToProps = (state: any) => ({
-  loading: state.auth.loading,
-});
-
-export default connect(mapStateToProps, null)(FormLogin);
+export default FormLogin;

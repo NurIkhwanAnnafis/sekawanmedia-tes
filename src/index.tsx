@@ -10,13 +10,21 @@ import Routes from './Routes';
 import { store } from './redux/store';
 import 'moment/locale/id';
 import './i18n';
+import { ConfigProvider } from 'antd';
+
+ConfigProvider.config({
+  prefixCls: 'custom',
+  theme: {
+    primaryColor: '#25b864',
+  },
+});
 
 ReactDOM.render(
   <React.Fragment>
     <Provider store={store}>
-        <BrowserRouter>
-          <Routes />
-        </BrowserRouter>
+      <BrowserRouter>
+        <Routes />
+      </BrowserRouter>
     </Provider>
   </React.Fragment>,
   document.getElementById('root'),

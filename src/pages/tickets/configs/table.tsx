@@ -12,9 +12,10 @@ interface IColumns {
     handleSetModalSelected: (type: 'approve' | 'reject', values: IProducts | null, open: boolean) => void
     handleShowDetail: (id: string | number) => void
     t: any
+    isAdmin: boolean
 }
 
-export const columns = ({ handleSetModalSelected, handleShowDetail, t }: IColumns): ColumnsType<IProducts> => [
+export const columns = ({ handleSetModalSelected, handleShowDetail, t, isAdmin }: IColumns): ColumnsType<IProducts> => [
     {
         title: t('column.0', 'Ticket details', { returnObjects: true }),
         dataIndex: 'title',
@@ -76,6 +77,7 @@ export const columns = ({ handleSetModalSelected, handleShowDetail, t }: IColumn
             <ColumnAction
                 onClick={(type, open) => handleSetModalSelected(type, record, open)}
                 onClickDetail={() => handleShowDetail(record.id)}
+                isAdmin={isAdmin}
             />
         ),
     },

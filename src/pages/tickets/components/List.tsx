@@ -12,6 +12,7 @@ const List: React.FC = () => {
         loading,
         handleSetModalSelected,
         handleShowDetail,
+        isAdmin,
     } = useContext(ContextTickets);
 
     return (
@@ -19,7 +20,7 @@ const List: React.FC = () => {
             <Row gutter={24} style={{ margin: '0px -24px' }}>
                 <Col span={24} className="px-0">
                     <Table
-                        columns={columns({ handleSetModalSelected, handleShowDetail, t })}
+                        columns={columns({ handleSetModalSelected, handleShowDetail, t, isAdmin })}
                         dataSource={dataTickets.products}
                         pagination={false} scroll={{ x: 1000 }}
                         loading={loading}

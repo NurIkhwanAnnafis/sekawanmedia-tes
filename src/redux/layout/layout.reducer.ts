@@ -1,13 +1,14 @@
 import { layoutTypes } from './layout.types';
 
+type IAction = { type: 'LOADING' | 'IS_MOBILE' | ''; payload: boolean }
+type IState = { loading: boolean; isMobile: boolean }
+
 const initState = {
   loading: false,
-  loadingTable: false,
-  isUpdateUser: false,
   isMobile: false,
 };
 
-export const layoutReducer = (state: any = initState, action: any) => {
+export const layoutReducer = (state: IState = initState, action: IAction) => {
   switch (action.type) {
     case layoutTypes.LOADING:
       return {

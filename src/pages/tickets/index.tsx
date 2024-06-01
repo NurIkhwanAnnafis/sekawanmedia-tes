@@ -34,6 +34,7 @@ const Tickets: React.FC = () => {
         handleSubmitFilter,
         params,
         handleShowDetail,
+        isAdmin,
     } = useTicketList();
 
     return (
@@ -60,6 +61,7 @@ const Tickets: React.FC = () => {
                     handleSubmitFilter,
                     params,
                     handleShowDetail,
+                    isAdmin,
                 }}
             >
                 <Card className="styleCardTicket">

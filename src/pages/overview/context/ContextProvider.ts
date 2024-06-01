@@ -21,7 +21,11 @@ export const defaultValue = {
         waiting_for_developer: 0,
         pending: 0,
     },
-    dataTasks: { data: [] }
+    dataTasks: { data: [] },
+    newTask: '',
+    handleChange: (value: string) => { },
+    handleCreateNewTask: () => { },
+    isAdmin: false
 }
 
 export const ContextOverview = createContext<IContextSummary>(defaultValue)

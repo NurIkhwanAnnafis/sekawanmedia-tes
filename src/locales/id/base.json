@@ -5,11 +5,23 @@
     },
     "header": {
         "logout": "Keluar",
-        "language": "Bahasa"
+        "language": "Bahasa",
+        "theme": "Tema"
     },
     "notification": {
         "title": "Notifikasi",
         "no": "Belum ada notifikasi",
-        "see": "Lihat semua"
+        "see": "Lihat semua",
+        "search": "cari tiket"
+    },
+    "message": {
+        "ticket": {
+            "create": "Tiket Berhasil Dibuat",
+            "update": "Tiket Berhasil Diperbarui"
+        },
+        "task": {
+            "warningTitle": "Judul wajib diisi",
+            "create": "Tugas berhasil dibuat"
+        }
     }
 }

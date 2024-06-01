@@ -16,6 +16,16 @@ const DropdownProfile: React.FC = (props) => {
 
   const menu = (
     <Menu style={{ width: 170 }}>
+      <Menu.Item key="1">
+        <div className="d-flex justify-content-between align-items-center" onClick={(e) => e ? e.stopPropagation() : {}}>
+          <p>{t('header.theme', 'Theme')}</p>
+          <Switch
+            checkedChildren="dark"
+            unCheckedChildren="light"
+            onChange={(check) => {}}
+          />
+        </div>
+      </Menu.Item>
       <Menu.Item key="2">
         <div className="d-flex justify-content-between align-items-center" onClick={(e) => e ? e.stopPropagation() : {}}>
           <p>{t('header.language', 'Bahasa')}</p>

@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { Fragment, ReactElement } from "react";
 import { Button, Card, Col, Image, Modal, Row, Typography } from "antd";
 import Wrapper from "../../../components/Wrapper";
 import { useTicketDetail } from "../context/useTicketDetail";
@@ -27,6 +27,7 @@ const Detail = () => {
         modal,
         setModal,
         handleUpdateStatus,
+        isAdmin,
     } = useTicketDetail();
 
     return (
@@ -53,12 +54,16 @@ const Detail = () => {
                         <Button htmlType="button" type="default" onClick={handleBack}>
                             {t('label.cancel', 'Cabcel', { ns: 'base' })}
                         </Button>
-                        <Button htmlType="button" type="primary" danger className="mx-2" onClick={() => setModal({ open: true, type: 'reject' })}>
-                            {t('action.1', 'Reject', { returnObjects: true })}
-                        </Button>
-                        <Button htmlType="button" type="primary" onClick={() => setModal({ open: true, type: 'approve' })}>
-                            {t('action.0', 'Approve', { returnObjects: true })}
-                        </Button>
+                        {isAdmin && (
+                            <Fragment>
+                                <Button htmlType="button" type="primary" danger className="mx-2" onClick={() => setModal({ open: true, type: 'reject' })}>
+                                    {t('action.1', 'Reject', { returnObjects: true })}
+                                </Button>
+                                <Button htmlType="button" type="primary" onClick={() => setModal({ open: true, type: 'approve' })}>
+                                    {t('action.0', 'Approve', { returnObjects: true })}
+                                </Button>
+                            </Fragment>
+                        )}
                     </Col>
                 </Row>
             </Card>

@@ -13,6 +13,10 @@ const CardTask: React.FC = () => {
     const {
         dataUnresolved,
         dataTasks,
+        handleChange,
+        handleCreateNewTask,
+        newTask,
+        isAdmin
     } = useContext(ContextOverview);
 
     return (
@@ -77,31 +81,44 @@ const CardTask: React.FC = () => {
                     </Row>
                     <br />
                     <Row gutter={24} justify="space-between">
-                        <Col span={18}>
-                            <Input size="small" className="px-0" placeholder={t('tasks.create', 'Create new task')} bordered={false} />
-                        </Col>
-                        <Col span={6} className="text-end">
-                            <Button
-                                type="ghost"
-                                shape="circle"
-                                size="small"
-                                icon={<PlusOutlined style={{ fontSize: 12, color: 'rgba(0, 0, 0, 0.45)' }} />}
-                                style={{
-                                    minWidth: '18px',
-                                    width: '18px',
-                                    height: '18px',
-                                }}
-                            />
-                        </Col>
-                        {dataTasks.data.map(x => (
+                        {isAdmin && (
                             <Fragment>
+                                <Col span={18}>
+                                    <Input
+                                        size="small"
+                                        className="px-0"
+                                        placeholder={t('tasks.create', 'Create new task')}
+                                        bordered={false}
+                                        value={newTask}
+                                        onChange={e => handleChange(e.target.value)}
+                                    />
+                                </Col>
+                                <Col span={6} className="text-end">
+                                    <Button
+                                        type="ghost"
+                                        shape="circle"
+                                        size="small"
+                                        icon={<PlusOutlined style={{ fontSize: 12, color: 'rgba(0, 0, 0, 0.45)' }} />}
+                                        style={{
+                                            minWidth: '18px',
+                                            width: '18px',
+                                            height: '18px',
+                                        }}
+                                        onClick={handleCreateNewTask}
+                                    />
+                                </Col>
                                 <Divider className="my-3" />
+                            </Fragment>
+                        )}
+                        {dataTasks.data.map((x, i) => (
+                            <Fragment>
                                 <Col span={18}>
                                     <Checkbox checked={!!x.status}>{x.title}</Checkbox>
                                 </Col>
                                 <Col span={6} className="text-end px-0">
                                     <TagPriority level={x.level} />
                                 </Col>
+                                {i < dataTasks.data.length && <Divider className="my-3" />}
                             </Fragment>
                         ))}
                     </Row>

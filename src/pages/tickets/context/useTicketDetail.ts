@@ -5,8 +5,12 @@ import { getTicketsDetail, updateTickets } from "../../../data/tickets";
 import { useDispatch } from "react-redux";
 import { setLoading } from "../../../redux/layout/layout.actions";
 import { ErrorNotification, SuccessNotification } from "../../../components/Notification/CustomNotification";
+import { useTranslation } from "react-i18next";
+import { getRole } from "../../../utils/localStorage";
 
 export const useTicketDetail = () => {
+    const { t } = useTranslation(['base']);
+    const isAdmin = getRole() === 'admin';
     const navigate = useNavigate();
     const params = useParams();
     const dispatch = useDispatch();
@@ -49,7 +53,7 @@ export const useTicketDetail = () => {
             await updateTickets(payload, detail.id);
             handleBack()
             setModal({ open: false, type: '' });
-            SuccessNotification({ description: 'Ticket Successfully Updated' });
+            SuccessNotification({ description: t('message.ticket.update', 'Ticket Successfully Updated') });
         } catch (error: any) {
             ErrorNotification(error);
         } finally {
@@ -67,5 +71,6 @@ export const useTicketDetail = () => {
         modal,
         setModal,
         handleUpdateStatus,
+        isAdmin,
     }
 }
