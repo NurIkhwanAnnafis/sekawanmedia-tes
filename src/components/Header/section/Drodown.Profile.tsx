@@ -4,6 +4,8 @@ import Notif from './Notif';
 import { UserOutlined } from '@ant-design/icons';
 import { ContextHeader } from '../context/ContextProvider';
 import { useTranslation } from 'react-i18next';
+import { ContextTheme } from '../../../config/theme';
+
 const { Text } = Typography;
 
 const DropdownProfile: React.FC = (props) => {
@@ -13,6 +15,10 @@ const DropdownProfile: React.FC = (props) => {
     handleLogout,
     current: { name, profile_image },
   } = useContext(ContextHeader);
+  const {
+    theme,
+    handleChangeTheme,
+  } = useContext(ContextTheme);
 
   const menu = (
     <Menu style={{ width: 170 }}>
@@ -22,7 +28,8 @@ const DropdownProfile: React.FC = (props) => {
           <Switch
             checkedChildren="dark"
             unCheckedChildren="light"
-            onChange={(check) => {}}
+            checked={theme === 'dark'}
+            onChange={(check) => handleChangeTheme(check ? 'dark' : '')}
           />
         </div>
       </Menu.Item>
@@ -77,7 +84,7 @@ const DropdownProfile: React.FC = (props) => {
         overlay={menu}
         trigger={['click']}
         placement="bottomCenter"
-        overlayClassName="custom-dropdown-profile">
+        overlayClassName={`custom-dropdown-profile ${theme}`}>
         <span className="ant-dropdown-link me-2" onClick={(e) => e.preventDefault()}>
           {profile_image ? (
             <Avatar size="large" src={profile_image} />

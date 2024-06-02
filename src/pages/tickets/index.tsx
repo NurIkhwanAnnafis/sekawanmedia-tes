@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Card } from 'antd';
 import Wrapper from '../../components/Wrapper';
 
@@ -11,6 +11,7 @@ import ModalCreate from './components/ModalCreate';
 import ModalAction from './components/ModalAction';
 import ModalSort from './components/ModalSort';
 import ModalFilter from './components/ModalFilter';
+import { ContextTheme } from '../../config/theme';
 
 const Tickets: React.FC = () => {
     const {
@@ -36,6 +37,9 @@ const Tickets: React.FC = () => {
         handleShowDetail,
         isAdmin,
     } = useTicketList();
+    const {
+        theme,
+    } = useContext(ContextTheme);
 
     return (
         <Wrapper>
@@ -64,7 +68,7 @@ const Tickets: React.FC = () => {
                     isAdmin,
                 }}
             >
-                <Card className="styleCardTicket">
+                <Card className={`styleCardTicket ${theme}`}>
                     <Filter />
                     <br />
                     <List />

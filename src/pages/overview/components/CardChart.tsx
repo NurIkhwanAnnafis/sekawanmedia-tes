@@ -16,6 +16,7 @@ import moment from "moment";
 import { ContextOverview } from "../context/ContextProvider";
 import { convertSecondstoHours, convertSecondstoMinutes } from "../configs/helper";
 import { useTranslation } from "react-i18next";
+import { ContextTheme } from "../../../config/theme";
 
 const { Title: TitleText, Text } = Typography;
 
@@ -34,6 +35,9 @@ const CardChart: React.FC = () => {
     const {
         dataGraph: { graph, summary }
     } = useContext(ContextOverview);
+    const {
+        theme,
+    } = useContext(ContextTheme);
     const labels = [];
     for (let i = 0; i < 13; i++) {
         labels.push(i);
@@ -55,7 +59,7 @@ const CardChart: React.FC = () => {
                 data: labels.map((id: number) => graph.yesterday.find(x => x.id === id)?.total || 0),
                 borderColor: "rgb(223,224,235)",
                 cubicInterpolationMode: "monotone",
-                backgroundColor: "rgba(223,224,235, 0.5)",
+                backgroundColor: theme ? "#fff" : "rgba(223,224,235, 0.5)",
             },
         ],
     };
@@ -70,36 +74,48 @@ const CardChart: React.FC = () => {
             legend: {
                 position: "top" as const,
                 align: "end" as const,
+                labels: {
+                    color: theme ? "#c8c8c8" : undefined
+                }
             },
 
             title: {
                 display: true,
                 text: `as of ${moment().locale(i18n.language).format('DD MMM YYYY, h:mm a')}`,
                 position: "top" as const,
-                align: 'start' as const
+                align: 'start' as const,
+                color: theme ? "#c8c8c8" : undefined
             },
         },
         scales: {
             x: {
                 height: '100%',
                 grid: {
-                    display: false
+                    display: false,
+                    color: theme ? "#fff" : "#c8c8c8",
+                },
+                ticks: {
+                    color: theme ? "#fff" : "#c8c8c8"
                 }
             },
             y: {
                 grid: {
                     display: true,
+                    color: theme ? "#fff" : "#c8c8c8"
                 },
                 min: 0,
-                max: 70
-            }
+                max: 70,
+                ticks: {
+                    color: theme ? "#fff" : "#c8c8c8"
+                }
+            },
         }
     };
 
     return (
         <Row gutter={[0, 0]}>
             <Col md={16} sm={24} xs={24}>
-                <Card className="styleCardOnlyLeft" style={{ textAlign: 'start' }}>
+                <Card className={`styleCardOnlyLeft ${theme}`} style={{ textAlign: 'start' }}>
                     <TitleText className="mb-0" level={5}>{t('trend', `Today's trends`)}</TitleText>
                     <Line options={options} data={data} />
                 </Card>
@@ -107,31 +123,31 @@ const CardChart: React.FC = () => {
             <Col md={8} sm={24} xs={24}>
                 <Row gutter={24}>
                     <Col span={24}>
-                        <Card className="styleCardOnlyRight" style={{ textAlign: 'center' }}>
+                        <Card className={`styleCardOnlyRight ${theme}`} style={{ textAlign: 'center' }}>
                             <Text strong>{t('resolved', 'Resolved')}</Text>
                             <TitleText level={5} className="mt-1 mb-0">{summary.resolved}</TitleText>
                         </Card>
                     </Col>
                     <Col span={24}>
-                        <Card className="styleCardOnlyRight" style={{ textAlign: 'center' }}>
+                        <Card className={`styleCardOnlyRight ${theme}`} style={{ textAlign: 'center' }}>
                             <Text strong>{t('received', 'Received')}</Text>
                             <TitleText level={5} className="mt-1 mb-0">{summary.received}</TitleText>
                         </Card>
                     </Col>
                     <Col span={24}>
-                        <Card className="styleCardOnlyRight" style={{ textAlign: 'center' }}>
+                        <Card className={`styleCardOnlyRight ${theme}`} style={{ textAlign: 'center' }}>
                             <Text strong>{t('average_req_time', 'Average First response time')}</Text>
                             <TitleText level={5} className="mt-1 mb-0">{convertSecondstoMinutes(summary.average_first_response_time)}</TitleText>
                         </Card>
                     </Col>
                     <Col span={24}>
-                        <Card className="styleCardOnlyRight" style={{ textAlign: 'center' }}>
+                        <Card className={`styleCardOnlyRight ${theme}`} style={{ textAlign: 'center' }}>
                             <Text strong>{t('average_res_time', 'Average response time')}</Text>
                             <TitleText level={5} className="mt-1 mb-0">{convertSecondstoHours(summary.average_response_time)}</TitleText>
                         </Card>
                     </Col>
                     <Col span={24}>
-                        <Card className="styleCardOnlyRight" style={{ textAlign: 'center' }}>
+                        <Card className={`styleCardOnlyRight ${theme}`} style={{ textAlign: 'center' }}>
                             <Text strong>{t('sla', 'Resolution within SLA')}</Text>
                             <TitleText level={5} className="mt-1 mb-0">{summary.resolution_within_sla}%</TitleText>
                         </Card>

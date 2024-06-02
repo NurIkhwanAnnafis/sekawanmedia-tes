@@ -1,4 +1,8 @@
 .box-content {
-  background: #F7F8FC;
+  background-color: #F7F8FC;
   padding: 18px;
+
+  &.dark {
+    background-color: #3a3f51;
+  }
 }

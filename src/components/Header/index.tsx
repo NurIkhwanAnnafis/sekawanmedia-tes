@@ -1,12 +1,13 @@
 import { MenuUnfoldOutlined } from '@ant-design/icons';
 import { Button, Layout, Typography } from 'antd';
-import { connect } from 'react-redux';
 
 import './index.scss';
 import DropdownProfile from './section/Drodown.Profile';
 import { ContextHeader } from './context/ContextProvider';
 import { useHeader } from './context/useHeader';
 import { useTranslation } from 'react-i18next';
+import { useContext } from 'react';
+import { ContextTheme } from '../../config/theme';
 
 interface Props {
   collapsed: boolean;
@@ -14,7 +15,6 @@ interface Props {
   isMobile: boolean;
   title: string;
   id: string;
-  isUpdateUser?: boolean;
 }
 
 const { Header } = Layout;
@@ -30,6 +30,9 @@ const Index: React.FC<Props> = (props) => {
     handleSearch,
     handleClick
   } = useHeader();
+  const {
+    theme,
+  } = useContext(ContextTheme);
 
   const widthBoxHeader = !isMobile ? { width: `calc(100% - 220px)` } : { width: `100%` };
 
@@ -43,7 +46,7 @@ const Index: React.FC<Props> = (props) => {
         handleClick
       }}
     >
-      <Header className="box-header">
+      <Header className={`box-header ${theme}`}>
         <div className="d-flex">
           <div className="header-container" style={widthBoxHeader}>
             <div className="box-title">
@@ -54,7 +57,7 @@ const Index: React.FC<Props> = (props) => {
                     type="text"
                     onClick={() => setCollapsed(!collapsed)}
                     style={{ color: 'white' }}>
-                    <MenuUnfoldOutlined />
+                    <MenuUnfoldOutlined style={{ color: theme ? '#fff' : undefined }} />
                   </Button>
                 )}
               </div>
@@ -67,8 +70,4 @@ const Index: React.FC<Props> = (props) => {
   );
 };
 
-const mapStateToProps = (state: any) => ({
-  isUpdateUser: state.layout.isUpdateUser,
-});
-
-export default connect(mapStateToProps, null)(Index);
+export default Index;

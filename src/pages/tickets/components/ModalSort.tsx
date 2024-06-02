@@ -2,6 +2,7 @@ import { Button, Form, Modal, Select } from "antd";
 import { useContext } from "react";
 import { ContextTickets } from "../context/ContextProvider";
 import { useTranslation } from "react-i18next";
+import { ContextTheme } from "../../../config/theme";
 
 const { Option } = Select;
 
@@ -14,6 +15,9 @@ const ModalSort: React.FC = () => {
         handleCloseModalSort,
         params,
     } = useContext(ContextTickets);
+    const {
+        theme,
+    } = useContext(ContextTheme);
 
     return (
         <Modal
@@ -25,6 +29,7 @@ const ModalSort: React.FC = () => {
                 handleCloseModalSort();
                 form.resetFields();
             }}
+            className={`custom-modal ${theme}`}
         >
             <Form
                 form={form}
@@ -34,7 +39,6 @@ const ModalSort: React.FC = () => {
                 autoComplete="off"
                 layout="vertical"
                 initialValues={{ sortBy: params.sortBy, order: params.order }}
-
             >
                 <Form.Item
                     label={t('modal.sort.sortBy', 'Sort by')}

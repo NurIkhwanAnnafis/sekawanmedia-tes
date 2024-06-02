@@ -1,10 +1,11 @@
-import { Fragment, ReactElement } from "react";
+import { Fragment, ReactElement, useContext } from "react";
 import { Button, Card, Col, Image, Modal, Row, Typography } from "antd";
 import Wrapper from "../../../components/Wrapper";
 import { useTicketDetail } from "../context/useTicketDetail";
 import moment from "moment";
 import ColumnStatus from "./ColumnStatus";
 import { Trans, useTranslation } from "react-i18next";
+import { ContextTheme } from "../../../config/theme";
 
 const { Title, Text } = Typography;
 
@@ -14,7 +15,7 @@ const ValueSection = ({ label, value }: { label: string, value: string | Element
             <Text type="secondary">{label}</Text>
         </Col>
         <Col md={18} sm={12}>
-            {value}
+            <Text>{value}</Text>
         </Col>
     </Row>
 )
@@ -29,10 +30,13 @@ const Detail = () => {
         handleUpdateStatus,
         isAdmin,
     } = useTicketDetail();
+    const {
+        theme,
+    } = useContext(ContextTheme);
 
     return (
         <Wrapper>
-            <Card className="styleCardTicket">
+            <Card className={`styleCardTicket ${theme}`}>
                 <Row gutter={24}>
                     <Col span={24}>
                         <Title level={5}>{t('detail.header', 'Detail Ticket')}</Title>
@@ -74,6 +78,7 @@ const Detail = () => {
                 maskClosable
                 onCancel={() => setModal({ type: '', open: false })}
                 onOk={handleUpdateStatus}
+                className={`custom-modal ${theme}`}
             >
                 <Text>
                     <Trans t={t} i18nKey={modal.type === 'approve' ? 'modal.action.descriptionApprove' : 'modal.action.descriptionReject'}>

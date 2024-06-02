@@ -25,7 +25,7 @@ const Filter: React.FC = () => {
                         <Button
                             icon={<SortAscendingOutlined />}
                             htmlType="button"
-                            type="text"
+                            type="default"
                             className="d-flex align-items-center"
                             onClick={handleOpenModalSort}
                         >
@@ -36,7 +36,7 @@ const Filter: React.FC = () => {
                         <Button
                             icon={<FilterOutlined />}
                             htmlType="button"
-                            type="text"
+                            type="default"
                             className="d-flex align-items-center"
                             onClick={handleOpenModalFilter}
                         >

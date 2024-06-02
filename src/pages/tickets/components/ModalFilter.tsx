@@ -2,6 +2,7 @@ import { Button, Form, Input, Modal } from "antd";
 import { useContext } from "react";
 import { ContextTickets } from "../context/ContextProvider";
 import { useTranslation } from "react-i18next";
+import { ContextTheme } from "../../../config/theme";
 
 const ModalFilter: React.FC = () => {
     const { t } = useTranslation(['ticket', 'base']);
@@ -12,6 +13,9 @@ const ModalFilter: React.FC = () => {
         handleSubmitFilter,
         handleCloseModalFilter,
     } = useContext(ContextTickets);
+    const {
+        theme,
+    } = useContext(ContextTheme);
 
     return (
         <Modal
@@ -23,6 +27,7 @@ const ModalFilter: React.FC = () => {
                 handleCloseModalFilter();
                 form.resetFields();
             }}
+            className={`custom-modal ${theme}`}
         >
             <Form
                 form={form}

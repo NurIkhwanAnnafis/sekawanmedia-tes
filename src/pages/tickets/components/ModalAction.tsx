@@ -2,6 +2,7 @@ import { Modal, Typography } from "antd";
 import { useContext } from "react";
 import { ContextTickets } from "../context/ContextProvider";
 import { useTranslation, Trans } from "react-i18next";
+import { ContextTheme } from "../../../config/theme";
 
 const { Text } = Typography;
 
@@ -12,6 +13,9 @@ const ModalAction: React.FC = () => {
         handleSetModalSelected,
         handleUpdateStatus
     } = useContext(ContextTickets);
+    const {
+        theme,
+    } = useContext(ContextTheme);
 
     return (
         <Modal
@@ -20,6 +24,7 @@ const ModalAction: React.FC = () => {
             maskClosable
             onCancel={() => handleSetModalSelected('', null, false)}
             onOk={handleUpdateStatus}
+            className={`custom-modal ${theme}`}
         >
             <Text>
                 <Trans t={t} i18nKey={modalSelected.type === 'approve' ? 'modal.action.descriptionApprove' : 'modal.action.descriptionReject'}>

@@ -4,20 +4,11 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import './assets/styles/index.scss';
 import './assets/styles/antd-index.less';
-import 'antd/dist/antd.less';
 import reportWebVitals from './reportWebVitals';
 import Routes from './Routes';
 import { store } from './redux/store';
 import 'moment/locale/id';
 import './i18n';
-import { ConfigProvider } from 'antd';
-
-ConfigProvider.config({
-  prefixCls: 'custom',
-  theme: {
-    primaryColor: '#25b864',
-  },
-});
 
 ReactDOM.render(
   <React.Fragment>

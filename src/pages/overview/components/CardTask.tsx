@@ -5,6 +5,7 @@ import { ContextOverview } from "../context/ContextProvider";
 import { PlusOutlined } from "@ant-design/icons";
 import TagPriority from "./TagPriority";
 import { useTranslation } from "react-i18next";
+import { ContextTheme } from "../../../config/theme";
 
 const { Title, Text } = Typography;
 
@@ -18,11 +19,14 @@ const CardTask: React.FC = () => {
         newTask,
         isAdmin
     } = useContext(ContextOverview);
+    const {
+        theme,
+    } = useContext(ContextTheme);
 
     return (
         <Row gutter={[24, 24]}>
             <Col span={12} sm={12} xs={24}>
-                <Card className="styleCard" style={{ minHeight: 305 }}>
+                <Card className={`styleCard ${theme}`} style={{ minHeight: 305 }}>
                     <Row gutter={24} justify="space-between">
                         <Col span={18}>
                             <Title className="mb-0" level={5}>{t('unresolved_tickets.title', 'Unresolved tickets')}</Title>
@@ -67,7 +71,7 @@ const CardTask: React.FC = () => {
                 </Card>
             </Col>
             <Col span={12} sm={12} xs={24}>
-                <Card className="styleCard" style={{ minHeight: 305 }}>
+                <Card className={`styleCard ${theme}`} style={{ minHeight: 305 }}>
                     <Row gutter={24} justify="space-between">
                         <Col span={12}>
                             <Title className="mb-0" level={5}>{t('tasks.title', 'Tasks')}</Title>
@@ -111,9 +115,9 @@ const CardTask: React.FC = () => {
                             </Fragment>
                         )}
                         {dataTasks.data.map((x, i) => (
-                            <Fragment>
+                            <Fragment key={x.id}>
                                 <Col span={18}>
-                                    <Checkbox checked={!!x.status}>{x.title}</Checkbox>
+                                    <Checkbox checked={!!x.status}><Text>{x.title}</Text></Checkbox>
                                 </Col>
                                 <Col span={6} className="text-end px-0">
                                     <TagPriority level={x.level} />

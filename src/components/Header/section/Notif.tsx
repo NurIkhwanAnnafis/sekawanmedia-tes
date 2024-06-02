@@ -1,4 +1,4 @@
-import { Badge, Button, Divider, Dropdown, Menu, Select } from 'antd';
+import { Badge, Button, Divider, Dropdown, Menu, Select, Typography } from 'antd';
 import { BellOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -6,6 +6,9 @@ import { IStore } from '../../../redux/model.store';
 import { useContext } from 'react';
 import { ContextHeader } from '../context/ContextProvider';
 import { debounce } from 'lodash';
+import { ContextTheme } from '../../../config/theme';
+
+const { Text, Title } = Typography;
 
 const Notif: React.FC = () => {
   const { t } = useTranslation(['base']);
@@ -15,20 +18,25 @@ const Notif: React.FC = () => {
     handleSearch,
     handleClick
   } = useContext(ContextHeader);
+  const {
+    theme,
+  } = useContext(ContextTheme);
 
   const menu = (
     <Menu style={{ width: 250 }} className="p-3">
-      <h5 className="mb-0">{t('notification.title', 'Notifikasi')}</h5>
+      <Title level={5} className="mb-0">{t('notification.title', 'Notifikasi')}</Title>
       <Divider className="my-3" />
 
-      <div>
+      <div className="mb-3">
         {notification.list.length === 0 ? (
-          <p className="text-muted">
-            <i>{t('notification.no', 'Belum ada notifikasi')}</i>
-          </p>
+          <Text type="secondary" italic>
+            {t('notification.no', 'Belum ada notifikasi')}
+          </Text>
         ) : (
           notification.list.map((val, i) => i < 5 && (
-            <p key={val.id} className="text-muted">{val.title}</p>
+            <Text key={val.id} type="secondary">
+              {val.title}
+            </Text>
           ))
         )}
       </div>
@@ -60,10 +68,10 @@ const Notif: React.FC = () => {
         overlay={menu}
         trigger={['click']}
         placement="bottomCenter"
-        overlayClassName="custom-dropdown-notif">
+        overlayClassName={`custom-dropdown-notif ${theme}`}>
         <div style={{ marginTop: -2 }}>
           <Badge dot count={notification.list.length} size="small">
-            <BellOutlined />
+            <BellOutlined style={{ color: theme ? '#fff' : undefined }} />
           </Badge>
         </div>
       </Dropdown>

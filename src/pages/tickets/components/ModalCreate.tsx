@@ -2,6 +2,7 @@ import { Button, Form, Input, Modal, Select } from "antd";
 import { useContext } from "react";
 import { ContextTickets } from "../context/ContextProvider";
 import { useTranslation } from "react-i18next";
+import { ContextTheme } from "../../../config/theme";
 
 const { Option } = Select;
 
@@ -13,6 +14,9 @@ const ModalCreate: React.FC = () => {
         handleSubmit,
         handleCloseModalCreate,
     } = useContext(ContextTickets);
+    const {
+        theme,
+    } = useContext(ContextTheme);
 
     return (
         <Modal
@@ -24,6 +28,7 @@ const ModalCreate: React.FC = () => {
                 handleCloseModalCreate();
                 form.resetFields();
             }}
+            className={`custom-modal ${theme}`}
         >
             <Form
                 form={form}

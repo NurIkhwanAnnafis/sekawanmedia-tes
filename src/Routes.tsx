@@ -10,6 +10,7 @@ import moment from 'moment';
 import { ConfigProvider } from 'antd';
 import id_ID from 'antd/lib/locale/id_ID';
 import en_US from 'antd/lib/locale/en_US';
+import { ContextTheme, useTheme } from './config/theme';
 
 interface ILayoutProps {
   path: string;
@@ -23,6 +24,7 @@ interface ILayoutProps {
 
 const Routes: React.FC = () => {
   const { i18n } = useTranslation();
+  const { theme, handleChangeTheme } = useTheme();
   moment().locale(i18n.language);
   const currentUser = getUser().name;
   const currentRole = getRole();
@@ -59,30 +61,31 @@ const Routes: React.FC = () => {
   const userRoles = checkMenuRoles(currentRole);
 
   return (
-    <ConfigProvider
-      componentSize="middle"
-      locale={i18n.language === 'en' ? en_US : id_ID}
-      prefixCls=""
-    >
-      <Switch>
-        {menus.map(
-          (detail: ILayoutProps) =>
-            detail.role.includes(userRoles) && (
-              <Route
-                key={detail.path}
-                path={detail.path}
-                element={
-                  <detail.layout {...global} title={detail.title} id={detail.id}>
-                    <Suspense fallback={<Loading />}>
-                      <detail.component />
-                    </Suspense>
-                  </detail.layout>
-                }
-              />
-            ),
-        )}
-      </Switch>
-    </ConfigProvider>
+    <ContextTheme.Provider value={{ theme, handleChangeTheme }}>
+      <ConfigProvider
+        componentSize="middle"
+        locale={i18n.language === 'en' ? en_US : id_ID}
+      >
+        <Switch>
+          {menus.map(
+            (detail: ILayoutProps) =>
+              detail.role.includes(userRoles) && (
+                <Route
+                  key={detail.path}
+                  path={detail.path}
+                  element={
+                    <detail.layout {...global} title={detail.title} id={detail.id}>
+                      <Suspense fallback={<Loading />}>
+                        <detail.component />
+                      </Suspense>
+                    </detail.layout>
+                  }
+                />
+              ),
+          )}
+        </Switch>
+      </ConfigProvider>
+    </ContextTheme.Provider>
   );
 };
 
